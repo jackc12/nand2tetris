@@ -21,29 +21,8 @@ CHIP Mux8Way16 {
 
     PARTS:
     Mux4Way16(a=a, b=b, c=c, d=d, sel=sel[0..1], out=mux1);
-    // 000 -> a
-    // 001 -> b
-    // 010 -> c
-    // 011 -> d 
     Mux4Way16(a=a, b=c, c=e, d=g, sel=sel[1..2], out=mux2);
-    // 000 -> a
-    // 010 -> c
-    // 100 -> e
-    // 110 -> g
     Mux4Way16(a=e, b=f, c=g, d=h, sel=sel[0..1], out=mux3);
-    // 100 -> e
-    // 101 -> f
-    // 110 -> g
-    // 111 -> h
     Mux4Way16(a=e, b=f, c=g, d=h, sel=sel[1..2], out=mux4);
-    // 001 -> b
-    // 011 -> d
-    // 101 -> f
-    // 111 -> h
     Mux4Way16(a=mux1, b=mux1, c=mux3, d=mux3, sel[0]=sel[0], sel[1]=sel[2], out=out);
-    // X_X -> _ is unknown
-    // 000 -> a
-    // 001 -> b
-    // 100 -> e
-    // 101 -> f
 }
