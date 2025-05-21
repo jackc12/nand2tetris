@@ -46,5 +46,21 @@ CHIP ALU {
     Mux16(a=false, b=true, sel=zxNand1, out=zxOut);
     Nand(a=zx, b=true, out=nxNand1);
     Not16(in=x, out=xNot);
-    Mux16(a=zxOut, b=xNot, sel=nx, out=out);
+    Mux16(a=zxOut, b=xNot, sel=nx, out=zxNx);
+    
+    // zy and ny
+    Nand(a=zy, b=true, out=zyNand1);
+    Mux16(a=false, b=true, sel=zyNand1, out=zyOut);
+    Nand(a=zy, b=true, out=nyNand1);
+    Not16(in=y, out=yNot);
+    Mux16(a=zyOut, b=yNot, sel=ny, out=zyNy);
+    
+    Or16(a=zyNy, b=false, out=out);
+
+    
+    // this is wrong
+    // need to use the DMux to determine selector
+    // didn't realize sel[0]=zx was allowed
+    // it may not be
+    Mux4Way16(a=zxOut, b=xNot, c=zyOut, d=yNot, sel[0]=zx, sel[1]=nx, out=wrong);
 }
