@@ -75,5 +75,14 @@ CHIP ALU {
     // if (no == 1) sets out = !out   // bitwise not
     Nand(a=no, b=true, out=noNand);
     Not16(in=fOut, out=notFOut);
-    Mux16(a=notFOut, b=fOut, sel=noNand, out=out);
+    Mux16(a=notFOut, b=fOut, sel=noNand, out=nOut);
+
+    // out
+    Or16(a=nOut, b=false, out=out);
+
+
+    // if (out == 0) zr = 1, else zr = 0
+
+
+    // if (out < 0)  ng = 1, else ng = 0
 }
