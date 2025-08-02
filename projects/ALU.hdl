@@ -80,6 +80,10 @@ CHIP ALU {
 
     // if (out == 0) zr = 1, else zr = 0
     Or16(a=nOut, b=true, out[0..7]=out0);
+    Or16(a=nOut, b=true, out[8..15]=out1);
+    Or8Way(in=out0, out=out0Or);
+    Or8Way(in=out1, out=out1Or);
+    Nand(a=out0Or, b=out1Or, out=zr);
 
 
     // if (out < 0)  ng = 1, else ng = 0
