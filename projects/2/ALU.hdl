@@ -50,6 +50,7 @@ CHIP ALU {
     Not16(in=x1, out=notX1);
     Mux16(a=notX1, b=x1, sel=nxNand, out=x2);
 
+
     // if (zy == 1) sets y = 0        // 16-bit constant
     Nand(a=zy, b=true, out=zyNand);
     Mux16(a=false, b=y, sel=zyNand, out=y1);
@@ -58,4 +59,21 @@ CHIP ALU {
     Nand(a=ny, b=true, out=nyNand);
     Not16(in=y1, out=notY1);
     Mux16(a=notY1, b=y1, sel=nyNand, out=y2);
+
+   
+    // if (f == 0)  sets out = x & y  // bitwise and
+    And16(a=x2, b=y2, out=f0);
+
+    // if (f == 1)  sets out = x + y  // integer 2's complement addition
+    Add16(a=x2, b=y2, out=f1);
+
+    // f
+    Nand(a=f, b=true, out=nfNand);
+    Mux16(a=f1, b=f0, sel=nfNand, out=fOut);
+
+
+    // if (no == 1) sets out = !out   // bitwise not
+    Nand(a=no, b=true, out=noNand);
+    Not16(in=fOut, out=notFOut);
+    Mux16(a=notFOut, b=fOut, sel=noNand, out=out);
 }
