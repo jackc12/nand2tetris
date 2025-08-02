@@ -41,26 +41,21 @@ CHIP ALU {
         ng;      // if (out < 0)  equals 1, else 0
 
     PARTS:
-    // if zx == 1: out = 0; else: 1
-    Nand(a=zx, b=true, out=zxNand1);
-    Mux16(a=false, b=true, sel=zxNand1, out=zxOut);
-    Nand(a=zx, b=true, out=nxNand1);
-    Not16(in=x, out=xNot);
-    Mux16(a=zxOut, b=xNot, sel=nx, out=zxNx);
+    // if (zx == 1) sets x = 0        // 16-bit constant
+    Nand(a=zx, b=true, out=zxNand);
+    Mux16(a=false, b=x, sel=zxNand, out=x1);
     
-    // zy and ny
-    Nand(a=zy, b=true, out=zyNand1);
-    Mux16(a=false, b=true, sel=zyNand1, out=zyOut);
-    Nand(a=zy, b=true, out=nyNand1);
-    Not16(in=y, out=yNot);
-    Mux16(a=zyOut, b=yNot, sel=ny, out=zyNy);
-    
-    Or16(a=zyNy, b=false, out=out);
+    // if (nx == 1) sets x = !x       // bitwise not
+    Nand(a=nx, b=true, out=nxNand);
+    Not16(in=x1, out=notX1);
+    Mux16(a=notX1, b=x1, sel=nxNand, out=x2);
 
+    // if (zy == 1) sets y = 0        // 16-bit constant
+    Nand(a=zy, b=true, out=zyNand);
+    Mux16(a=false, b=y, sel=zyNand, out=y1);
     
-    // this is wrong
-    // need to use the DMux to determine selector
-    // didn't realize sel[0]=zx was allowed
-    // it may not be
-    Mux4Way16(a=zxOut, b=xNot, c=zyOut, d=yNot, sel[0]=zx, sel[1]=nx, out=wrong);
+    // if (nx == 1) sets x = !x       // bitwise not
+    Nand(a=ny, b=true, out=nyNand);
+    Not16(in=y1, out=notY1);
+    Mux16(a=notY1, b=y1, sel=nyNand, out=y2);
 }
