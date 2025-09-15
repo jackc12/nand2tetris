@@ -8,3 +8,7 @@
 // The algorithm is based on repetitive addition.
 
 //// Replace this comment with your code.
+@R3
+M=0
+
+@END
