@@ -9,3 +9,39 @@
 // the screen should be cleared.
 
 //// Replace this comment with your code.
+(LOOP)
+   @SCREEN
+   D=A
+   @x
+   M=D
+   @KBD
+   D=M
+   @WHITE
+   D;JEQ
+   @BLACK
+   0;JEQ
+(WHITE)
+   @x
+   A=M
+   M=0
+   @KBD
+   D=M
+   @LOOP
+   D;JNE
+   @x
+   M=M+1
+   @WHITE
+   0;JEQ
+(BLACK)
+   @x
+   A=M
+   M=-1
+   @KBD
+   D=M
+   @LOOP
+   D;JEQ
+   @x
+   M=M+1
+   @BLACK
+   0;JEQ
+   
