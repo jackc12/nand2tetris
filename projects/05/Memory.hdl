@@ -31,5 +31,8 @@ CHIP Memory {
     Screen(in=in, load=l2, address=address[0..12], out=screen);
     Keyboard(out=keyboard);
 
-    Mux4Way16(a=ram, b=ram, c=screen, d=keyboard, sel=address[13..14], out=out);
+    Or8Way(in=address[0..7], out=address0To7);
+    Or8Way(in=address[5..12], out=address5To12);
+    Or(a=address0To7, b=address5To12, out=addressable);
+    Mux8Way16(a=ram, b=ram, c=screen, d=screen, e=keyboard, f=false, g=false, h=false, sel[1..2]=address[13..14], sel[0]=addressable, out=out);
 }
