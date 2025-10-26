@@ -5,7 +5,7 @@
 
 // Tests the Fill.hack program in the CPU emulator.
 
-load Fill.asm;
+// load Fill.asm;
 echo "Select the highest speed and 'enable keyboard'. Then press any key for some time, and inspect the screen.";
 
 repeat {
