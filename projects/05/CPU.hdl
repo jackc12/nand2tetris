@@ -45,11 +45,10 @@ CHIP CPU {
     And(a=muxNg, b=ng, out=jmpNg);
     And(a=muxZr, b=zr, out=jmpZr);
     And(a=jmpNg, b=jmpZr, out=ngZr);
-    Or(a=muxJmp, b=ngZr, out=jmp);
+    Or(a=muxJmp, b=ngZr, out=jmpJ);
+    And(a=instruction[15], b=jmpJ, out=jmp);
     Not(in=jmp, out=inc);
 
     Or16(a=aluOut, b=false, out=outm);
     Or16(a=aOut, b=false, out[0..14]=addressM);
 }
-
-
