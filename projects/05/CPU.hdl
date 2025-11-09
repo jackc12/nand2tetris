@@ -36,7 +36,7 @@ CHIP CPU {
     Mux16(a=inM, b=aOut, sel=instruction[12], out=mux1);
     ARegister(in=mux0, load=instruction[15], out=aOut);
     DRegister(in=aluOut, load=instruction[4], out=dOut);
-    PC(in=aOut, load=false, inc=false, reset=reset, out=pcOut);
+    PC(in=aOut, load=jmp, inc=inc, reset=reset, out=pcOut);
     ALU(x=dOut, y=aOut, zx=false, nx=false, zy=false, ny=false, f=false, no=false, out=aluOut, zr=zr, ng=ng);
     Or(a=instruction[3], b=false, out=writeM);
     
@@ -45,4 +45,6 @@ CHIP CPU {
     And(a=muxZr, b=zr, out=jmpZr);
     And(a=jmpNg, b=jmpZr, out=ngZr);
     Or(a=muxJmp, b=ngZr, out=jmp);
+    Not(in=jmp, out=inc);
 }
+
