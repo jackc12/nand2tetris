@@ -37,12 +37,12 @@ CHIP CPU {
     ARegister(in=mux0, load=instruction[15], out=aOut);
     DRegister(in=aluOut, load=instruction[4], out=dOut);
     PC(in=aOut, load=false, inc=false, reset=reset, out=pcOut);
-    ALU(x=dOut, y=aOut, zx=false, nx=false, zy=false, ny=false, f=false, no=false, out=aluOut, zr=aluZ, ng=aluN);
+    ALU(x=dOut, y=aOut, zx=false, nx=false, zy=false, ny=false, f=false, no=false, out=aluOut, zr=zr, ng=ng);
     Or(a=instruction[3], b=false, out=writeM);
-
-    Or8Way(in[0..2]=instruction[0..2], out=instructionJmp);
-    Or(a=instruction[0], b=false, out=gt0);
-    Or(a=instruction[1], b=aluZ, out=eq0);
     
-    DMux8Way(in=instruction[0], sel=instruction[0..2], a=a, b=b, c=c, d=d, e=e, f=f, g=g, h=h);
+    Mux8Way16(a=false, b[2]=true, c[1]=true, d[2]=true, e[0]=true, f[2]=true, g[1]=true, g[0]=true, h[2]=true, sel=instruction[0..2], out[0]=muxNg, out[1]=muxZr, out[2]=muxJmp);
+    And(a=muxNg, b=ng, out=jmpNg);
+    And(a=muxZr, b=zr, out=jmpZr);
+    And(a=jmpNg, b=jmpZr, out=ngZr);
+    Or(a=muxJmp, b=ngZr, out=jmp);
 }
