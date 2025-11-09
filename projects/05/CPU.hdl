@@ -37,7 +37,7 @@ CHIP CPU {
     ARegister(in=mux0, load=true, out=aOut);
     DRegister(in=aluOut, load=instruction[4], out=dOut);
     PC(in=aOut, load=jmp, inc=inc, reset=reset, out[0..14]=pc);
-    ALU(x=dOut, y=mux1, zx=false, nx=false, zy=false, ny=false, f=false, no=false, out=aluOut, zr=zr, ng=ng);
+    ALU(x=dOut, y=mux1, zx=instruction[11], nx=instruction[10], zy=instruction[9], ny=instruction[8], f=instruction[7], no=instruction[6], out=aluOut, zr=zr, ng=ng);
     And(a=instruction[3], b=instruction[15], out=writeM);
     
     Mux8Way16(a=false, b[2]=true, c[1]=true, d[2]=true, e[0]=true, f[2]=true, g[1]=true, g[0]=true, h[2]=true, sel=instruction[0..2], out[0]=muxNg, out[1]=muxZr, out[2]=muxJmp);
