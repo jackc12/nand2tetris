@@ -35,10 +35,12 @@ CHIP CPU {
     Mux16(a=instruction, b=aluOut, sel=instruction[15], out=mux0);
     Mux16(a=aOut, b=inM, sel=instruction[12], out=mux1);
     
+    // store in A for A instr or appropriate C instr
     Not(in=instruction[15], out=aInst);
-    Or(a=instruction[3], b=aInst, out=loadA);
+    Or(a=instruction[5], b=aInst, out=loadA);
     ARegister(in=mux0, load=loadA, out=aOut);
 
+    // do not store in D for A instr
     And(a=instruction[15], b=instruction[4], out=loadD);
     DRegister(in=aluOut, load=loadD, out=dOut);
     
