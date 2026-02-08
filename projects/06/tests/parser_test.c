@@ -4,20 +4,20 @@
 MU_TEST(constructor_test) {
   int count;
   char **lines = constructor("tests/files/hello_world.txt", &count);
-  for (int i = 0; i < 1; i++)
-    printf("%s\n", lines[i]);
   mu_assert_string_eq("hello world", lines[0]);
+  mu_assert_int_eq(1, count);
 }
-MU_TEST(hasMoreLines_test) {
-  const char *lines[] = {"pooh shiesty", "king von", "lil durk"};
-  int three_lines = hasMoreLines(lines, 2);
-  int four_lines = hasMoreLines(lines, 3);
-  mu_assert_int_eq(1, three_lines);
-  mu_assert_int_eq(0, four_lines);
+MU_TEST(has_more_lines_test) {
+  int line_count = 3;
+  // index starts at 0
+  int second_line = has_more_lines(line_count, 1);
+  int third_line = has_more_lines(line_count, 2);
+  mu_assert_int_eq(1, second_line);
+  mu_assert_int_eq(0, third_line);
 }
 MU_TEST_SUITE(test_suite) {
-  // MU_RUN_TEST(constructor_test);
-  MU_RUN_TEST(hasMoreLines_test);
+  MU_RUN_TEST(constructor_test);
+  MU_RUN_TEST(has_more_lines_test);
 }
 
 int main() {
