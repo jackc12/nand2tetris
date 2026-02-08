@@ -1,26 +1,47 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char *argv[]) {
-  if (argc < 2) {
-    printf("Usage: %s <filename>\n", argv[0]);
-    return 1;
-  }
-  FILE *fptr = fopen(argv[1], "r");
+/**
+ * Reads a file and returns an array of strings.
+ * Updates 'lineCount' so the caller knows the array size.
+ */
+char **constructor(char *file_name) {
+  FILE *file = fopen(filename, "r");
+  if (!file)
+    return NULL;
 
-  // 3. Error handling if file doesn't exist
-  if (fptr == NULL) {
-    perror("Error opening file"); // Prints a descriptive error message
-    return 1;
-  }
+  int capacity = 10; // Start with space for 10 lines
+  *lineCount = 0;
 
-  char ch;
-  // 4. Read and print character by character until End Of File (EOF)
-  while ((ch = fgetc(fptr)) != EOF) {
-    printf("%c", ch);
+  // Allocate memory for an array of string pointers
+  char **lines = malloc(capacity * sizeof(char *));
+  char buffer[1024];
+
+  while (fgets(buffer, sizeof(buffer), file)) {
+    // If array is full, double its size
+    if (*lineCount >= capacity) {
+      capacity *= 2;
+      lines = realloc(lines, capacity * sizeof(char *));
+    }
+
+    // Clean newline and copy to heap
+    buffer[strcspn(buffer, "\n")] = '\0';
+    lines[*lineCount] = strdup(buffer);
+    (*lineCount)++;
   }
 
   // 5. Cleanup
   fclose(fptr);
-  return 0;
+  return lines;
+}
+
+/**
+ * Helper to clean up the allocated memory
+ */
+void free_line_array(char **lines, int count) {
+    for (int i = 0; i < count; i++) {
+        free(lines[i]);
+    }
+    free(lines);
 }
