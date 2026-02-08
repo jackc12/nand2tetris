@@ -1,0 +1,13 @@
+# Binaries
+assembler
+test_runner
+a.out
+
+# Build artifacts
+obj/
+*.o
+
+# Editor files
+*.swp
+*~
+.vscode/
