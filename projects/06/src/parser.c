@@ -6,13 +6,13 @@
  * Reads a file and returns an array of strings.
  * Updates 'lineCount' so the caller knows the array size.
  */
-char **constructor(char *file_name) {
+char **constructor(char *file_name, int *lineCount) {
   FILE *file = fopen(file_name, "r");
   if (!file)
     return NULL;
 
   int capacity = 10; // Start with space for 10 lines
-  int lineCount = 0;
+  *lineCount = 0;
 
   // Allocate memory for an array of string pointers
   char **lines = malloc(capacity * sizeof(char *));
@@ -20,15 +20,15 @@ char **constructor(char *file_name) {
 
   while (fgets(buffer, sizeof(buffer), file)) {
     // If array is full, double its size
-    if (lineCount >= capacity) {
+    if (*lineCount >= capacity) {
       capacity *= 2;
       lines = realloc(lines, capacity * sizeof(char *));
     }
 
     // Clean newline and copy to heap
     buffer[strcspn(buffer, "\n")] = '\0';
-    lines[lineCount] = strdup(buffer);
-    (lineCount)++;
+    lines[*lineCount] = strdup(buffer);
+    (*lineCount)++;
   }
 
   // 5. Cleanup
@@ -44,4 +44,12 @@ void free_line_array(char **lines, int count) {
     free(lines[i]);
   }
   free(lines);
+}
+
+/**
+ * Are there more lines in the input
+ */
+int hasMoreLines(char **lines, int line) {
+	printf("hello: %s\n", lines[line]);
+	return 0;
 }
