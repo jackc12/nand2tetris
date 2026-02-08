@@ -2,8 +2,8 @@
 #include "parser.h"
 
 MU_TEST(constructor_test) {
-  const lines[] = constructor("files/hello_world.txt");
-  // mu_assert_string_eq("hello world", lines[0]);
+  char **lines = constructor("tests/files/hello_world.txt");
+  mu_assert_string_eq("hello world", lines[0]);
 }
 MU_TEST_SUITE(test_suite) { MU_RUN_TEST(constructor_test); }
 
