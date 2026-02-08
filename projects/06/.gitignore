@@ -7,7 +7,5 @@ a.out
 obj/
 *.o
 
-# Editor files
-*.swp
-*~
-.vscode/
+# vim swaps
+*.sw*
