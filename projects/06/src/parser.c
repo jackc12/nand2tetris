@@ -7,12 +7,12 @@
  * Updates 'lineCount' so the caller knows the array size.
  */
 char **constructor(char *file_name) {
-  FILE *file = fopen(filename, "r");
+  FILE *file = fopen(file_name, "r");
   if (!file)
     return NULL;
 
   int capacity = 10; // Start with space for 10 lines
-  *lineCount = 0;
+  int lineCount = 0;
 
   // Allocate memory for an array of string pointers
   char **lines = malloc(capacity * sizeof(char *));
@@ -20,19 +20,19 @@ char **constructor(char *file_name) {
 
   while (fgets(buffer, sizeof(buffer), file)) {
     // If array is full, double its size
-    if (*lineCount >= capacity) {
+    if (lineCount >= capacity) {
       capacity *= 2;
       lines = realloc(lines, capacity * sizeof(char *));
     }
 
     // Clean newline and copy to heap
     buffer[strcspn(buffer, "\n")] = '\0';
-    lines[*lineCount] = strdup(buffer);
-    (*lineCount)++;
+    lines[lineCount] = strdup(buffer);
+    (lineCount)++;
   }
 
   // 5. Cleanup
-  fclose(fptr);
+  fclose(file);
   return lines;
 }
 
@@ -40,8 +40,8 @@ char **constructor(char *file_name) {
  * Helper to clean up the allocated memory
  */
 void free_line_array(char **lines, int count) {
-    for (int i = 0; i < count; i++) {
-        free(lines[i]);
-    }
-    free(lines);
+  for (int i = 0; i < count; i++) {
+    free(lines[i]);
+  }
+  free(lines);
 }
