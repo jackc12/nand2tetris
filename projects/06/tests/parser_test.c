@@ -15,9 +15,15 @@ MU_TEST(has_more_lines_test) {
   mu_assert_int_eq(1, second_line);
   mu_assert_int_eq(0, third_line);
 }
+MU_TEST(advance_test) {
+  char *lines[] = {"@i", "M=1", "// comment", "     ", "@sum"};
+  int next_line = advance(lines, 0);
+  printf("line: %d", next_line);
+}
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(constructor_test);
   MU_RUN_TEST(has_more_lines_test);
+  MU_RUN_TEST(advance_test);
 }
 
 int main() {

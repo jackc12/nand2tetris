@@ -52,3 +52,15 @@ void free_line_array(char **lines, int count) {
 int has_more_lines(int line_count, int line_number) {
   return line_count - 1 > line_number;
 }
+
+/**
+ * Skips over white space and comments.
+ * Reads the next instruction from input and makes it the current instruction
+ * Only called if has_more_lines is true
+ * Initially no current instruction
+ */
+int advance(char **lines, int current_instruction) {
+  char *current_line = lines[current_instruction];
+  printf("current_line: %s\n", current_line);
+  return 0;
+}
