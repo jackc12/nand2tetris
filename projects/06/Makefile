@@ -20,8 +20,11 @@ test: tests/parser_test.c $(SRC_DIR)/parser.c
 	$(CC) $(CFLAGS) -o test_runner $^
 	./test_runner
 
+format:
+	clang-format -i $(SRC_DIR)/*.c include/*.h tests/*.c tests/*.h
+
 clean:
 	rm -f assembler test_runner
 	rm -rf $(OBJ_DIR)
 
-.PHONY: test clean
+.PHONY: test clean format
