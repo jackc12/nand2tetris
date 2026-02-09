@@ -1,3 +1,4 @@
+#include "parser.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -95,7 +96,7 @@ char *advance(char **lines, int current_instruction, int instruction_count) {
   return next_instruction;
 }
 
-int get_instruction_type(char *instruction) {
+instruction_t instruction_type(char *instruction) {
   printf("%s\n", instruction);
   return 0;
 }
