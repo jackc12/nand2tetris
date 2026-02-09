@@ -33,6 +33,10 @@ MU_TEST(advance_test) {
 MU_TEST(instruction_type_test) {
   instruction_t type = instruction_type("@i");
   mu_check(A_INSTRUCTION == type);
+  type = instruction_type("(xxx)");
+  mu_check(L_INSTRUCTION == type);
+  type = instruction_type("D=D+1;JLE");
+  mu_check(C_INSTRUCTION == type);
 }
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(constructor_test);
