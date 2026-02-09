@@ -30,10 +30,15 @@ MU_TEST(advance_test) {
   next_line = advance(lines, 1, instruction_count);
   mu_assert_string_eq("@sum", next_line);
 }
+MU_TEST(instruction_type_test) {
+  instruction_t type = instruction_type("@i");
+  mu_check(A_INSTRUCTION == type);
+}
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(constructor_test);
   MU_RUN_TEST(has_more_lines_test);
   MU_RUN_TEST(advance_test);
+  MU_RUN_TEST(instruction_type_test);
 }
 
 int main() {
