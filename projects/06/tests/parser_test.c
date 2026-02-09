@@ -2,23 +2,33 @@
 #include "parser.h"
 
 MU_TEST(constructor_test) {
-  int count;
-  char **lines = constructor("tests/files/hello_world.txt", &count);
-  mu_assert_string_eq("hello world", lines[0]);
-  mu_assert_int_eq(1, count);
+  int instruction_count;
+  char **lines = constructor("tests/files/crazy_story.txt", &instruction_count);
+  mu_assert_string_eq(
+      "He got bricks, plus his neck is icy and it match his wrist", lines[0]);
+  mu_assert_string_eq(
+      "Now it’s like six, told her hit his phone, meet her in the WIIIC",
+      lines[1]);
+  mu_assert_string_eq("But he ain't go, buddy ain’t that slow, say meet him at "
+                      "the store (That's cool)",
+                      lines[2]);
+  mu_assert_int_eq(3, instruction_count);
 }
 MU_TEST(has_more_lines_test) {
-  int line_count = 3;
+  int instruction_count = 3;
   // index starts at 0
-  int second_line = has_more_lines(line_count, 1);
-  int third_line = has_more_lines(line_count, 2);
+  int second_line = has_more_lines(1, instruction_count);
+  int third_line = has_more_lines(2, instruction_count);
   mu_assert_int_eq(1, second_line);
   mu_assert_int_eq(0, third_line);
 }
 MU_TEST(advance_test) {
   char *lines[] = {"@i", "M=1", "// comment", "     ", "@sum"};
-  int next_line = advance(lines, 0);
-  printf("line: %d", next_line);
+  int instruction_count = 5;
+  char *next_line = advance(lines, 0, instruction_count);
+  mu_assert_string_eq("M=1", next_line);
+  next_line = advance(lines, 1, instruction_count);
+  mu_assert_string_eq("@sum", next_line);
 }
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(constructor_test);
