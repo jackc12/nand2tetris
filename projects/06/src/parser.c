@@ -94,3 +94,8 @@ char *advance(char **lines, int current_instruction, int instruction_count) {
   }
   return next_instruction;
 }
+
+int get_instruction_type(char *instruction) {
+  printf("%s\n", instruction);
+  return 0;
+}
