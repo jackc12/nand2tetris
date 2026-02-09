@@ -97,6 +97,23 @@ char *advance(char **lines, int current_instruction, int instruction_count) {
 }
 
 instruction_t instruction_type(char *instruction) {
-  printf("%s\n", instruction);
-  return A_INSTRUCTION;
+  instruction_t type;
+  int i;
+  // brittle
+  // should check that i in @i is 0..32767
+  if (instruction[0] == '@') {
+    type = A_INSTRUCTION;
+  } else if (instruction[0] == '(') {
+    i = 1;
+    while (instruction[i] != '\0') {
+      if (instruction[i] != ')') {
+        type = L_INSTRUCTION;
+      }
+      i++;
+    }
+  } else {
+    // brittle but valid assembly is an invariant
+    type = C_INSTRUCTION;
+  }
+  return type;
 }
