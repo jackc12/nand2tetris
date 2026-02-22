@@ -96,6 +96,11 @@ char *advance(char **lines, int current_instruction, int instruction_count) {
   return next_instruction;
 }
 
+/**
+ * If the current instruction is (xxx), returns the symbol xxx
+ * If the current instruction is @xxx, returns the symbol or decimal xxx
+ * Only called if instructionType is A_INSTRUCTION or L_INSTRUCTION
+ */
 instruction_t instruction_type(char *instruction) {
   instruction_t type;
   int i;
@@ -116,4 +121,24 @@ instruction_t instruction_type(char *instruction) {
     type = C_INSTRUCTION;
   }
   return type;
+}
+
+/**
+ * If the current instruction is (xxx), returns the symbol xxx
+ * If the current instruction is @xxx, returns the symbol or decimal xxx
+ * Only called if instructionType is A_INSTRUCTION or L_INSTRUCTION
+ */
+char *symbol(char *instruction) {
+  char *buffer = malloc(11 * sizeof(char));
+  if (buffer == NULL)
+    return NULL;
+  if (instruction[0] == '@') {
+    strncpy(buffer, &instruction[1], 10);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    return buffer;
+  } else {
+    strncpy(buffer, &instruction[1], 10);
+    buffer[strcspn(buffer, ")")] = '\0';
+    return buffer;
+  }
 }
