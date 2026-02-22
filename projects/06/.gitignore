@@ -1,6 +1,6 @@
 # Binaries
 assembler
-test_runner
+test_runner*
 a.out
 
 # Build artifacts
