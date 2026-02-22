@@ -41,8 +41,8 @@ MU_TEST(instruction_type_test) {
 MU_TEST(symbol_test) {
   char *symbol1 = symbol("@xxx");
   mu_assert_string_eq("xxx", symbol1);
-  // *symbol = instruction_type("(xxx)");
-  // mu_assert_string_eq("xxx", symbol);
+  symbol1 = symbol("(xxx)");
+  mu_assert_string_eq("xxx", symbol1);
 }
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(constructor_test);
