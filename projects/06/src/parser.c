@@ -144,7 +144,7 @@ char *symbol(char *instruction) {
 }
 
 char *dest(char *instruction) {
-  char *buffer = malloc(3 * sizeof(char)), *end = strchr(instruction, '=');
+  char *buffer = malloc(4 * sizeof(char)), *end = strchr(instruction, '=');
   if (buffer == NULL || end == NULL)
     return NULL;
 
@@ -163,6 +163,18 @@ char *comp(char *instruction) {
 
   int start_i = start - instruction + 1, end_i = end - start - 1;
   char *dest = strncpy(buffer, instruction + start_i, end_i);
+  if (dest == NULL)
+    return NULL;
+  return dest;
+}
+
+char *jump(char *instruction) {
+  char *buffer = malloc(3 * sizeof(char)), *start = strchr(instruction, ';');
+  if (buffer == NULL || start == NULL)
+    return NULL;
+
+  int start_i = start - instruction + 1;
+  char *dest = instruction + start_i;
   if (dest == NULL)
     return NULL;
   return dest;
