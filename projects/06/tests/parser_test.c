@@ -80,6 +80,24 @@ MU_TEST(comp_test) {
   comp0 = comp("ADM=D|A;JLE");
   mu_assert_string_eq("D|A", comp0);
 }
+MU_TEST(jump_test) {
+  char *jump0 = jump("D=D+1;null");
+  mu_assert_string_eq("null", jump0);
+  jump0 = jump("D=D+1;JGT");
+  mu_assert_string_eq("JGT", jump0);
+  jump0 = jump("D=D+1;JEQ");
+  mu_assert_string_eq("JEQ", jump0);
+  jump0 = jump("D=D+1;JGE");
+  mu_assert_string_eq("JGE", jump0);
+  jump0 = jump("D=D+1;JLT");
+  mu_assert_string_eq("JLT", jump0);
+  jump0 = jump("D=D+1;JNE");
+  mu_assert_string_eq("JNE", jump0);
+  jump0 = jump("D=D+1;JLE");
+  mu_assert_string_eq("JLE", jump0);
+  jump0 = jump("D=D+1;JMP");
+  mu_assert_string_eq("JMP", jump0);
+}
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(constructor_test);
   MU_RUN_TEST(has_more_lines_test);
@@ -88,6 +106,7 @@ MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(symbol_test);
   MU_RUN_TEST(dest_test);
   MU_RUN_TEST(comp_test);
+  MU_RUN_TEST(jump_test);
 }
 
 int main() {

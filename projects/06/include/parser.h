@@ -9,5 +9,6 @@ instruction_t instruction_type(char *instruction);
 char *symbol(char *instruction);
 char *dest(char *instruction);
 char *comp(char *instruction);
+char *jump(char *instruction);
 
 #endif
