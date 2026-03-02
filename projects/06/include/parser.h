@@ -7,5 +7,6 @@ int has_more_lines(int line_number, int instruction_count);
 char *advance(char **lines, int current_instruction, int instruction_count);
 instruction_t instruction_type(char *instruction);
 char *symbol(char *instruction);
+char *dest(char *instruction);
 
 #endif

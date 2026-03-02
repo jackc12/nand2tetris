@@ -130,8 +130,7 @@ instruction_t instruction_type(char *instruction) {
  */
 char *symbol(char *instruction) {
   char *buffer = malloc(11 * sizeof(char));
-  if (buffer == NULL)
-    return NULL;
+  if (buffer == NULL) return NULL;
   if (instruction[0] == '@') {
     strncpy(buffer, &instruction[1], 10);
     buffer[strcspn(buffer, "\n")] = '\0';
@@ -141,4 +140,15 @@ char *symbol(char *instruction) {
     buffer[strcspn(buffer, ")")] = '\0';
     return buffer;
   }
+}
+
+char *dest(char *instruction) {
+  char *buffer = malloc(3 * sizeof(char));
+  char *ptr = strchr(instruction, '=');
+  if (buffer == NULL || ptr == NULL) return NULL;
+
+  int index = (int)(ptr - instruction);
+  char *dest = strncpy(buffer, instruction, index);
+  if (dest == NULL) return NULL;
+  return dest;
 }

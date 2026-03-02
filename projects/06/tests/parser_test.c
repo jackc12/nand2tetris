@@ -44,12 +44,31 @@ MU_TEST(symbol_test) {
   symbol1 = symbol("(xxx)");
   mu_assert_string_eq("xxx", symbol1);
 }
+MU_TEST(dest_test) {
+  char *dest0 = dest("null=D+1;JLE");
+  mu_assert_string_eq("null", dest0);
+  dest0 = dest("M=D+1;JLE");
+  mu_assert_string_eq("M", dest0);
+  dest0 = dest("D=D+1;JLE");
+  mu_assert_string_eq("D", dest0);
+  dest0 = dest("DM=D+1;JLE");
+  mu_assert_string_eq("DM", dest0);
+  dest0 = dest("A=D+1;JLE");
+  mu_assert_string_eq("A", dest0);
+  dest0 = dest("AM=D+1;JLE");
+  mu_assert_string_eq("AM", dest0);
+  dest0 = dest("AD=D+1;JLE");
+  mu_assert_string_eq("AD", dest0);
+  dest0 = dest("ADM=D+1;JLE");
+  mu_assert_string_eq("ADM", dest0);
+}
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(constructor_test);
   MU_RUN_TEST(has_more_lines_test);
   MU_RUN_TEST(advance_test);
   MU_RUN_TEST(instruction_type_test);
   MU_RUN_TEST(symbol_test);
+  MU_RUN_TEST(dest_test);
 }
 
 int main() {
