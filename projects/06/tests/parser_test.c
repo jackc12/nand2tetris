@@ -61,6 +61,10 @@ MU_TEST(dest_test) {
   mu_assert_string_eq("AD", dest0);
   dest0 = dest("ADM=D+1;JLE");
   mu_assert_string_eq("ADM", dest0);
+  dest0 = dest("M=0");
+  mu_assert_string_eq("M", dest0);
+  dest0 = dest("D;JGT");
+  mu_assert_string_eq("", dest0);
 }
 MU_TEST(comp_test) {
   char *comp0 = comp("D=0;JLE");
