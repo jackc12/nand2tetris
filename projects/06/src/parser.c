@@ -129,20 +129,30 @@ instruction_t instruction_type(char *instruction) {
  * Only called if instructionType is A_INSTRUCTION or L_INSTRUCTION
  */
 char *symbol(char *instruction) {
-  char *buffer = malloc(11 * sizeof(char));
-  if (buffer == NULL)
-    return NULL;
-  if (instruction[0] == '@') {
-    strncpy(buffer, &instruction[1], 10);
-    buffer[strcspn(buffer, "\n")] = '\0';
-    return buffer;
+  char *newline = strchr(instruction, '\n'),
+       *closing_paren = strchr(instruction, ')');
+  int index;
+  if (instruction[0] == '@' && newline != NULL) {
+    index = (int)(newline - instruction);
+  } else if (instruction[0] == '(' && closing_paren != NULL) {
+    index = (int)(closing_paren - instruction);
   } else {
-    strncpy(buffer, &instruction[1], 10);
-    buffer[strcspn(buffer, ")")] = '\0';
-    return buffer;
+    return NULL;
   }
+  char *symbol = malloc(sizeof(char) * index);
+  if (symbol == NULL)
+    return NULL;
+
+  strncpy(symbol, &instruction[1], index);
+  symbol[index] = '\0';
+
+  return symbol;
 }
 
+/**
+ * Returns the symbolic dest part of the current C_INSTRUCTION
+ * Only called if instructionType is C_INSTRUCTION
+ */
 char *dest(char *instruction) {
   char *buffer = malloc(4 * sizeof(char)), *end = strchr(instruction, '=');
   if (buffer == NULL || end == NULL)
