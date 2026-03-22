@@ -105,6 +105,10 @@ MU_TEST(jump_test) {
   mu_assert_string_eq("JLE", jump0);
   jump0 = jump("D=D+1;JMP");
   mu_assert_string_eq("JMP", jump0);
+  jump0 = jump("M=0");
+  mu_assert_string_eq(NULL, jump0);
+  jump0 = jump("D;JGT");
+  mu_assert_string_eq("JGT", jump0);
 }
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(constructor_test);
