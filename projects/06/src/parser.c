@@ -169,6 +169,10 @@ char *dest(char *instruction) {
   return dest;
 }
 
+/**
+ * Returns the symbolic comp part of the current C_INSTRUCTION
+ * Only called if instructionType is C_INSTRUCTION
+ */
 char *comp(char *instruction) {
   char *buffer = malloc(3 * sizeof(char)), *start = strchr(instruction, '='),
        *end = strchr(instruction, ';');
@@ -182,6 +186,10 @@ char *comp(char *instruction) {
   return dest;
 }
 
+/**
+ * Returns the symbolic jump part of the current C_INSTRUCTION
+ * Only called if instructionType is C_INSTRUCTION
+ */
 char *jump(char *instruction) {
   char *buffer = malloc(3 * sizeof(char)), *start = strchr(instruction, ';');
   if (buffer == NULL || start == NULL)
