@@ -83,6 +83,10 @@ MU_TEST(comp_test) {
   mu_assert_string_eq("D+1", comp0);
   comp0 = comp("ADM=D|A;JLE");
   mu_assert_string_eq("D|A", comp0);
+  comp0 = comp("M=0");
+  mu_assert_string_eq(NULL, comp0);
+  comp0 = comp("D;JGT");
+  mu_assert_string_eq("D", comp0);
 }
 MU_TEST(jump_test) {
   char *jump0 = jump("D=D+1;null");
