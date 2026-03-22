@@ -129,16 +129,18 @@ instruction_t instruction_type(char *instruction) {
  * Only called if instructionType is A_INSTRUCTION or L_INSTRUCTION
  */
 char *symbol(char *instruction) {
-  char *newline = strchr(instruction, '\n'),
-       *closing_paren = strchr(instruction, ')');
+  char *end = strchr(instruction, '\0');
+  if (end == NULL)
+    return NULL;
   int index;
-  if (instruction[0] == '@' && newline != NULL) {
-    index = (int)(newline - instruction);
-  } else if (instruction[0] == '(' && closing_paren != NULL) {
-    index = (int)(closing_paren - instruction);
+  if (instruction[0] == '@') {
+    index = (int)(end - instruction);
+  } else if (instruction[0] == '(') {
+    index = (int)(end - instruction) - 2; // subtract for closing )
   } else {
     return NULL;
   }
+
   char *symbol = malloc(sizeof(char) * index);
   if (symbol == NULL)
     return NULL;
@@ -154,14 +156,16 @@ char *symbol(char *instruction) {
  * Only called if instructionType is C_INSTRUCTION
  */
 char *dest(char *instruction) {
-  char *buffer = malloc(4 * sizeof(char)), *end = strchr(instruction, '=');
-  if (buffer == NULL || end == NULL)
+  char *end = strchr(instruction, '=');
+  if (end == NULL)
     return NULL;
 
   int index = (int)(end - instruction);
-  char *dest = strncpy(buffer, instruction, index);
+  char *dest = malloc(sizeof(char) * index);
   if (dest == NULL)
     return NULL;
+  strncpy(dest, instruction, index);
+  dest[index] = '\0';
   return dest;
 }
 
