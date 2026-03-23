@@ -174,11 +174,20 @@ char *dest(char *instruction) {
  * Only called if instructionType is C_INSTRUCTION
  */
 char *comp(char *instruction) {
-  char *equals = strchr(instruction, '='), *semicolon = strchr(instruction, ';');
-  if (equals == NULL || semicolon == NULL)
-    return NULL;
-  int start = (int)(equals - instruction) + 1 , end = (int)(semicolon - instruction) - 1;
   printf("\ninstruction: %s\n", instruction);
+  int start, end;
+  char *equals = strchr(instruction, '='),
+       *semicolon = strchr(instruction, ';');
+  if (equals == NULL && semicolon != NULL) {
+    start = (int)instruction;
+    end = (int)(semicolon - instruction) - 1;
+  } else if (semicolon == NULL && equals != NULL) {
+    start = (int)(equals - instruction) + 1,
+    end = (int)strchr(instruction, '\0');
+  } else {
+    start = (int)(equals - instruction) + 1,
+    end = (int)(semicolon - instruction) - 1;
+  }
   printf("\nend: %d\n", end);
   printf("\nstart: %d\n", start);
 
@@ -188,9 +197,7 @@ char *comp(char *instruction) {
   }
 
   strncpy(dest, &instruction[start], end - start + 1);
-  printf("\ndest: %s\n", dest);
-  dest[end - 1] = '\0';
-  printf("\ndest: %s\n", dest);
+  dest[end] = '\0';
   return dest;
 }
 
