@@ -174,7 +174,6 @@ char *dest(char *instruction) {
  * Only called if instructionType is C_INSTRUCTION
  */
 char *comp(char *instruction) {
-  printf("\ninstruction: %s\n", instruction);
   int start, end;
   char *equals = strchr(instruction, '='),
        *semicolon = strchr(instruction, ';');
@@ -182,14 +181,11 @@ char *comp(char *instruction) {
     start = 0;
     end = (int)(semicolon - instruction) - 1;
   } else if (semicolon == NULL && equals != NULL) {
-    start = (int)(equals - instruction) + 1,
-    end = (int)strlen(instruction);
+    start = (int)(equals - instruction) + 1, end = (int)strlen(instruction);
   } else {
     start = (int)(equals - instruction) + 1,
     end = (int)(semicolon - instruction) - 1;
   }
-  printf("\nend: %d\n", end);
-  printf("\nstart: %d\n", start);
 
   char *dest = malloc(sizeof(char) * (end - start) + 1);
   if (dest == NULL) {
