@@ -197,7 +197,7 @@ char *comp(char *instruction) {
   }
 
   strncpy(dest, &instruction[start], end - start + 1);
-  dest[end] = '\0';
+  dest[end - start + 1] = '\0';
   return dest;
 }
 
