@@ -84,7 +84,7 @@ MU_TEST(comp_test) {
   comp0 = comp("ADM=D|A;JLE");
   mu_assert_string_eq("D|A", comp0);
   comp0 = comp("M=0");
-  mu_assert_string_eq(NULL, comp0);
+  mu_assert_string_eq("0", comp0);
   comp0 = comp("D;JGT");
   mu_assert_string_eq("D", comp0);
 }
