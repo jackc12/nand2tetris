@@ -179,11 +179,11 @@ char *comp(char *instruction) {
   char *equals = strchr(instruction, '='),
        *semicolon = strchr(instruction, ';');
   if (equals == NULL && semicolon != NULL) {
-    start = (int)instruction;
+    start = 0;
     end = (int)(semicolon - instruction) - 1;
   } else if (semicolon == NULL && equals != NULL) {
     start = (int)(equals - instruction) + 1,
-    end = (int)strchr(instruction, '\0');
+    end = (int)strlen(instruction);
   } else {
     start = (int)(equals - instruction) + 1,
     end = (int)(semicolon - instruction) - 1;
