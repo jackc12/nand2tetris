@@ -181,7 +181,8 @@ char *comp(char *instruction) {
     start = 0;
     end = (int)(semicolon - instruction) - 1;
   } else if (semicolon == NULL && equals != NULL) {
-    start = (int)(equals - instruction) + 1, end = (int)strlen(instruction);
+    start = (int)(equals - instruction) + 1;
+    end = (int)strlen(instruction);
   } else {
     start = (int)(equals - instruction) + 1,
     end = (int)(semicolon - instruction) - 1;
@@ -202,13 +203,20 @@ char *comp(char *instruction) {
  * Only called if instructionType is C_INSTRUCTION
  */
 char *jump(char *instruction) {
-  char *buffer = malloc(3 * sizeof(char)), *start = strchr(instruction, ';');
-  if (buffer == NULL || start == NULL)
+  int start, end;
+  char *semicolon = strchr(instruction, ';');
+  if (semicolon == NULL)
     return NULL;
+  else
+    start = (int)(semicolon - instruction) + 1;
 
-  int start_i = start - instruction + 1;
-  char *dest = instruction + start_i;
-  if (dest == NULL)
+  end = (int)strlen(instruction);
+  char *dest = malloc(sizeof(char) * (end - start) + 1);
+  if (dest == NULL) {
     return NULL;
+  }
+
+  strncpy(dest, &instruction[start], end - start + 1);
+  dest[end - start + 1] = '\0';
   return dest;
 }
