@@ -97,7 +97,7 @@ MU_TEST(code_jump_test) {
 }
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(code_dest_test);
-  // MU_RUN_TEST(code_comp_test);
+  MU_RUN_TEST(code_comp_test);
   MU_RUN_TEST(code_jump_test);
 }
 
