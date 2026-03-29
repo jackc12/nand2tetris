@@ -1,27 +1,42 @@
-#include "minunit.h"
 #include "code.h"
+#include "minunit.h"
 
 MU_TEST(dest_test) {
-  char *hack = dest("null")
-  mu_assert_string_eq("000", next_line);
-  hack = dest("M")
-  mu_assert_string_eq("001", next_line);
-  hack = dest("D")
-  mu_assert_string_eq("010", next_line);
-  hack = dest("DM")
-  mu_assert_string_eq("011", next_line);
-  hack = dest("A")
-  mu_assert_string_eq("100", next_line);
-  hack = dest("AM")
-  mu_assert_string_eq("101", next_line);
-  hack = dest("AD")
-  mu_assert_string_eq("110", next_line);
-  hack = dest("ADM")
-  mu_assert_string_eq("111", next_line);
+  char *hack = dest("null");
+  mu_assert_string_eq("000", hack);
+  hack = dest("M");
+  mu_assert_string_eq("001", hack);
+  hack = dest("D");
+  mu_assert_string_eq("010", hack);
+  hack = dest("DM");
+  mu_assert_string_eq("011", hack);
+  hack = dest("A");
+  mu_assert_string_eq("100", hack);
+  hack = dest("AM");
+  mu_assert_string_eq("101", hack);
+  hack = dest("AD");
+  mu_assert_string_eq("110", hack);
+  hack = dest("ADM");
+  mu_assert_string_eq("111", hack);
 }
-MU_TEST(comp_test) {
-}
+MU_TEST(comp_test) {}
 MU_TEST(jump_test) {
+  char *hack = dest("null");
+  mu_assert_string_eq("000", hack);
+  hack = dest("JGT");
+  mu_assert_string_eq("001", hack);
+  hack = dest("JEQ");
+  mu_assert_string_eq("010", hack);
+  hack = dest("JGE");
+  mu_assert_string_eq("011", hack);
+  hack = dest("JLT");
+  mu_assert_string_eq("100", hack);
+  hack = dest("JNE");
+  mu_assert_string_eq("101", hack);
+  hack = dest("JLE");
+  mu_assert_string_eq("110", hack);
+  hack = dest("JMP");
+  mu_assert_string_eq("111", hack);
 }
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(comp_test);
