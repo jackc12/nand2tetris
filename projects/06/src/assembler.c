@@ -9,6 +9,9 @@ int main(int argc, char *argv[]) {
   else {
     int instruction_count;
     char **file = constructor(argv[1], &instruction_count);
+    for (int i = 0; i < instruction_count; i++) {
+      printf("%s\n", file[i]);
+    }
   }
   return 0;
 }
