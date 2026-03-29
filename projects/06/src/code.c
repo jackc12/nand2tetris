@@ -6,7 +6,6 @@
  * Returns the binary code of the dest mnemonic
  */
 char *code_dest(char *dest) {
-  printf("%s\n", dest);
   if (strcmp(dest, "null") == 0)
     return "000";
   else if (strcmp(dest, "M") == 0)

@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     while (has_more_lines(line_number, instruction_count)) {
       instruction = advance(lines, line_number, instruction_count);
       printf("line: %d\n", line_number);
-        printf("i: %s\n", instruction);
+      printf("i: %s\n", instruction);
       switch (instruction_type(instruction)) {
       case A_INSTRUCTION:
         // TODO
@@ -28,9 +28,8 @@ int main(int argc, char *argv[]) {
         comp = parser_comp(instruction);
         comp = code_comp(comp);
         jump = parser_jump(instruction);
-	printf("jump: %s\n", jump);
         jump = code_jump(jump);
-	sprintf(instruction, "111%s%s%s", dest, comp, jump);
+        sprintf(instruction, "111%s%s%s", dest, comp, jump);
         break;
 
       case L_INSTRUCTION:
