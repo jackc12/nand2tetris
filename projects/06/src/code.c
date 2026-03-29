@@ -6,33 +6,31 @@
 /**
  * Returns the binary code of the comp mnemonic
  */
-char *comp(char *comp) {
-  switch (comp) {
-  case "null":
+char *code_comp(char *comp) {
+  if (strcmp(comp, "null") == 0)
     return "000";
-  case "M":
+  else if (strcmp(comp, "M") == 0)
     return "001";
-  case "D":
+  else if (strcmp(comp, "D") == 0)
     return "010";
-  case "DM":
+  else if (strcmp(comp, "DM") == 0)
     return "011";
-  case "A":
+  else if (strcmp(comp, "A") == 0)
     return "100";
-  case "AM":
+  else if (strcmp(comp, "AM") == 0)
     return "101";
-  case "AD":
+  else if (strcmp(comp, "AD") == 0)
     return "110";
-  case "ADM":
+  else if (strcmp(comp, "ADM") == 0)
     return "111";
-  }
 }
 
 /**
  * Returns the binary code of the dest mnemonic
  */
-char *dest(char *dest) {}
+char *code_dest(char *dest) { return dest; }
 
 /**
  * Returns the binary code of the jump mnemonic
  */
-char *jump(char *dest) {}
+char *code_jump(char *dest) { return dest; }
