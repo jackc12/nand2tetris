@@ -16,11 +16,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-test_parser: tests/parser_test.c $(SRC_DIR)/parser.c
+parser_test: tests/parser_test.c $(SRC_DIR)/parser.c
 	$(CC) $(CFLAGS) -o test_runner $^
 	./test_runner
 
-test_code: tests/code_test.c $(SRC_DIR)/code.c
+code_test: tests/code_test.c $(SRC_DIR)/code.c
 	$(CC) $(CFLAGS) -o test_runner $^
 	./test_runner
 
