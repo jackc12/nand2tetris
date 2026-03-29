@@ -84,6 +84,7 @@ char *advance(char **lines, int current_instruction, int instruction_count) {
         }
       }
       if (white_space) {
+        printf("white\n");
         // white space
         current_instruction++;
       } else {

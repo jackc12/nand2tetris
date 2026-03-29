@@ -7,16 +7,32 @@ int main(int argc, char *argv[]) {
   if (argc != 2)
     printf("WRONG!\n");
   else {
-    int instruction_count, current_instruction = 0, line_number = 0;
+    // -1 because advance increments first
+    // fix later
+    int instruction_count, line_number = -1;
     char **lines = constructor(argv[1], &instruction_count);
-    char *instruction;
+    char *instruction = NULL;
     while (has_more_lines(line_number, instruction_count)) {
-      printf("%d", current_instruction);
-      printf("%s", instruction);
-      instruction = advance(lines, current_instruction, instruction_count);
-      printf("%d", current_instruction);
-      printf("%s", instruction);
-      line_number = current_instruction;
+      instruction = advance(lines, line_number, instruction_count);
+      switch (instruction_type(instruction)) {
+      case A_INSTRUCTION:
+        // TODO
+        printf("A_INSTRUCTION\n");
+        break;
+
+      case C_INSTRUCTION:
+        // TODO
+        printf("C_INSTRUCTION\n");
+        break;
+
+      case L_INSTRUCTION:
+        // TODO
+        printf("L_INSTRUCTION\n");
+        break;
+      }
+      printf("ln: %d\n", line_number);
+      printf("i: %s\n", instruction);
+      line_number++;
     }
     free_line_array(lines, instruction_count);
   }
