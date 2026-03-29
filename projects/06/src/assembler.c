@@ -23,16 +23,15 @@ int main(int argc, char *argv[]) {
 
       case C_INSTRUCTION:
         // TODO
-        printf("C_INSTRUCTION\n");
         dest = parser_dest(instruction);
-        dest = code_dest(instruction);
+        dest = code_dest(dest);
         comp = parser_comp(instruction);
-        comp = code_comp(instruction);
+        comp = code_comp(comp);
         jump = parser_jump(instruction);
-        jump = code_jump(instruction);
-        instruction = strcat("111", dest);
-        instruction = strcat(instruction, comp);
-        instruction = strcat(instruction, jump);
+        printf("jump: %s\n", jump);
+        jump = code_jump(jump);
+        printf("C_INSTRUCTION\n");
+        sprintf(instruction, "111%s%s%s", dest, comp, jump);
         printf("i: %s\n", instruction);
         break;
 

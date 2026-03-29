@@ -207,7 +207,7 @@ char *parser_jump(char *instruction) {
   int start, end;
   char *semicolon = strchr(instruction, ';');
   if (semicolon == NULL)
-    return NULL;
+    return "null";
   else
     start = (int)(semicolon - instruction) + 1;
 
