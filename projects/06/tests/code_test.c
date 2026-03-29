@@ -19,23 +19,26 @@ MU_TEST(dest_test) {
   hack = dest("ADM");
   mu_assert_string_eq("111", hack);
 }
-MU_TEST(comp_test) {}
-MU_TEST(jump_test) {
+MU_TEST(comp_test) {
   char *hack = dest("null");
   mu_assert_string_eq("000", hack);
-  hack = dest("JGT");
+}
+MU_TEST(jump_test) {
+  char *hack = jump("null");
+  mu_assert_string_eq("000", hack);
+  hack = jump("JGT");
   mu_assert_string_eq("001", hack);
-  hack = dest("JEQ");
+  hack = jump("JEQ");
   mu_assert_string_eq("010", hack);
-  hack = dest("JGE");
+  hack = jump("JGE");
   mu_assert_string_eq("011", hack);
-  hack = dest("JLT");
+  hack = jump("JLT");
   mu_assert_string_eq("100", hack);
-  hack = dest("JNE");
+  hack = jump("JNE");
   mu_assert_string_eq("101", hack);
-  hack = dest("JLE");
+  hack = jump("JLE");
   mu_assert_string_eq("110", hack);
-  hack = dest("JMP");
+  hack = jump("JMP");
   mu_assert_string_eq("111", hack);
 }
 MU_TEST_SUITE(test_suite) {
