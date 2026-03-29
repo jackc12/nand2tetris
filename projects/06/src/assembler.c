@@ -15,29 +15,26 @@ int main(int argc, char *argv[]) {
     char *instruction = NULL, *dest, *comp, *jump;
     while (has_more_lines(line_number, instruction_count)) {
       instruction = advance(lines, line_number, instruction_count);
+      printf("line: %d\n", line_number);
+        printf("i: %s\n", instruction);
       switch (instruction_type(instruction)) {
       case A_INSTRUCTION:
         // TODO
-        printf("A_INSTRUCTION\n");
         break;
 
       case C_INSTRUCTION:
-        // TODO
         dest = parser_dest(instruction);
         dest = code_dest(dest);
         comp = parser_comp(instruction);
         comp = code_comp(comp);
         jump = parser_jump(instruction);
-        printf("jump: %s\n", jump);
+	printf("jump: %s\n", jump);
         jump = code_jump(jump);
-        printf("C_INSTRUCTION\n");
-        sprintf(instruction, "111%s%s%s", dest, comp, jump);
-        printf("i: %s\n", instruction);
+	sprintf(instruction, "111%s%s%s", dest, comp, jump);
         break;
 
       case L_INSTRUCTION:
         // TODO
-        printf("L_INSTRUCTION\n");
         break;
       }
       line_number++;
