@@ -155,7 +155,7 @@ char *symbol(char *instruction) {
  * Returns the symbolic dest part of the current C_INSTRUCTION
  * Only called if instructionType is C_INSTRUCTION
  */
-char *dest(char *instruction) {
+char *parser_dest(char *instruction) {
   char *end = strchr(instruction, '=');
   if (end == NULL)
     return NULL;
@@ -173,7 +173,7 @@ char *dest(char *instruction) {
  * Returns the symbolic comp part of the current C_INSTRUCTION
  * Only called if instructionType is C_INSTRUCTION
  */
-char *comp(char *instruction) {
+char *parser_comp(char *instruction) {
   int start, end;
   char *equals = strchr(instruction, '='),
        *semicolon = strchr(instruction, ';');
@@ -202,7 +202,7 @@ char *comp(char *instruction) {
  * Returns the symbolic jump part of the current C_INSTRUCTION
  * Only called if instructionType is C_INSTRUCTION
  */
-char *jump(char *instruction) {
+char *parser_jump(char *instruction) {
   int start, end;
   char *semicolon = strchr(instruction, ';');
   if (semicolon == NULL)
