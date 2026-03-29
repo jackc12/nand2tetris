@@ -5,9 +5,10 @@
 
 int main(int argc, char *argv[]) {
   if (argc != 2)
-    return 0;
+    printf("WRONG!\n");
   else {
-    printf("\n\n%s\n\n", argv[1]);
-    return 0;
+    int instruction_count;
+    char **file = constructor(argv[1], &instruction_count);
   }
+  return 0;
 }
