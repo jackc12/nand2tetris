@@ -20,7 +20,7 @@ test_parser: tests/parser_test.c $(SRC_DIR)/parser.c
 	$(CC) $(CFLAGS) -o test_runner $^
 	./test_runner
 
-test_code : tests/code_test.c $(SRC_DIR)/code.c
+test_code: tests/code_test.c $(SRC_DIR)/code.c
 	$(CC) $(CFLAGS) -o test_runner $^
 	./test_runner
 
