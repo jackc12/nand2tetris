@@ -24,6 +24,10 @@ test_code: tests/code_test.c $(SRC_DIR)/code.c
 	$(CC) $(CFLAGS) -o test_runner $^
 	./test_runner
 
+test_assembler: tests/assembler_test.c $(SRC_DIR)/assembler.c
+	$(CC) $(CFLAGS) -o test_runner $^
+	./test_runner
+
 format:
 	clang-format -i $(SRC_DIR)/*.c include/*.h tests/*.c tests/*.h
 
