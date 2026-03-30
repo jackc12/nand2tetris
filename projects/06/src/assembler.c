@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
         comp = code_comp(comp);
         jump = parser_jump(instruction);
         jump = code_jump(jump);
+        hack[instruction_number] = malloc(17);
         sprintf(hack[instruction_number], "111%s%s%s", dest, comp, jump);
         printf("%s\n", hack[instruction_number]);
         instruction_number++;
