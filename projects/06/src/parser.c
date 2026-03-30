@@ -51,7 +51,7 @@ void free_line_array(char **lines, int instruction_count) {
  * Are there more lines in the input
  */
 int has_more_lines(int line_number, int instruction_count) {
-  return instruction_count - 1 > line_number;
+  return instruction_count > line_number;
 }
 
 /**
@@ -157,12 +157,12 @@ char *symbol(char *instruction) {
 char *parser_dest(char *instruction) {
   char *end = strchr(instruction, '=');
   if (end == NULL)
-    return NULL;
+    return "null";
 
   int index = (int)(end - instruction);
   char *dest = malloc(sizeof(char) * index);
   if (dest == NULL)
-    return NULL;
+    return "null";
   strncpy(dest, instruction, index);
   dest[index] = '\0';
   return dest;

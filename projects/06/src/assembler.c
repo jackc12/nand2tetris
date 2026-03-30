@@ -32,8 +32,11 @@ int main(int argc, char *argv[]) {
       case C_INSTRUCTION:
         printf("%s\n", instruction);
         dest = parser_dest(instruction);
+	printf("dest: %s\n", dest);
         dest = code_dest(dest);
+	printf("dest: %s\n", dest);
         comp = parser_comp(instruction);
+	printf("comp: %s\n", comp);
         comp = code_comp(comp);
         jump = parser_jump(instruction);
         jump = code_jump(jump);
@@ -49,8 +52,8 @@ int main(int argc, char *argv[]) {
       }
       line_number++;
     }
-    free_line_array(lines, instruction_count);
-    free_line_array(hack, instruction_count);
+    // free_line_array(lines, instruction_count);
+    // free_line_array(hack, instruction_count);
   }
   return 0;
 }
