@@ -61,7 +61,6 @@ int has_more_lines(int line_number, int instruction_count) {
  * Initially no current instruction
  */
 char *advance(char **lines, int current_instruction, int instruction_count) {
-  current_instruction++;
   char *next_instruction;
   int i, white_space;
   while (current_instruction < instruction_count) {
