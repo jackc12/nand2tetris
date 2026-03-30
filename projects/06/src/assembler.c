@@ -20,23 +20,16 @@ int main(int argc, char *argv[]) {
     char **hack = malloc(instruction_count * sizeof(char *));
 
     while (has_more_lines(line_number, instruction_count)) {
-      printf("ln: %d\n", line_number);
       instruction = advance(lines, &line_number, instruction_count);
-      printf("i: %s\n", instruction);
       switch (instruction_type(instruction)) {
       case A_INSTRUCTION:
         // TODO
-        printf("%s\n", instruction);
         break;
 
       case C_INSTRUCTION:
-        printf("%s\n", instruction);
         dest = parser_dest(instruction);
-	printf("dest: %s\n", dest);
         dest = code_dest(dest);
-	printf("dest: %s\n", dest);
         comp = parser_comp(instruction);
-	printf("comp: %s\n", comp);
         comp = code_comp(comp);
         jump = parser_jump(instruction);
         jump = code_jump(jump);
@@ -47,7 +40,6 @@ int main(int argc, char *argv[]) {
         break;
 
       case L_INSTRUCTION:
-        printf("%s\n", instruction);
         // TODO
         break;
       }
