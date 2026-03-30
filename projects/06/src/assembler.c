@@ -52,8 +52,8 @@ int main(int argc, char *argv[]) {
       }
       line_number++;
     }
-    // free_line_array(lines, instruction_count);
-    // free_line_array(hack, instruction_count);
+    free_line_array(lines, instruction_count);
+    free_line_array(hack, instruction_number);
   }
   return 0;
 }
