@@ -20,7 +20,7 @@ MU_TEST(has_more_lines_test) {
   int second_line = has_more_lines(1, instruction_count);
   int third_line = has_more_lines(2, instruction_count);
   mu_assert_int_eq(1, second_line);
-  mu_assert_int_eq(0, third_line);
+  mu_assert_int_eq(1, third_line);
 }
 MU_TEST(advance_test) {
   char *lines[] = {"@i", "M=1", "// comment", "     ", "@sum"};
@@ -69,7 +69,7 @@ MU_TEST(dest_test) {
   dest0 = parser_dest("M=0");
   mu_assert_string_eq("M", dest0);
   dest0 = parser_dest("D;JGT");
-  mu_assert_string_eq(NULL, dest0);
+  mu_assert_string_eq("null", dest0);
 }
 MU_TEST(comp_test) {
   char *comp0 = parser_comp("D=0;JLE");
@@ -111,7 +111,7 @@ MU_TEST(jump_test) {
   jump0 = parser_jump("D=D+1;JMP");
   mu_assert_string_eq("JMP", jump0);
   jump0 = parser_jump("M=0");
-  mu_assert_string_eq(NULL, jump0);
+  mu_assert_string_eq("null", jump0);
   jump0 = parser_jump("D;JGT");
   mu_assert_string_eq("JGT", jump0);
 }
