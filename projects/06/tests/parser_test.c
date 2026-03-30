@@ -25,9 +25,14 @@ MU_TEST(has_more_lines_test) {
 MU_TEST(advance_test) {
   char *lines[] = {"@i", "M=1", "// comment", "     ", "@sum"};
   int instruction_count = 5;
-  char *next_line = advance(lines, 0, instruction_count);
+  int line_number = 0;
+  char *next_line = advance(lines, &line_number, instruction_count);
+  mu_assert_string_eq("@i", next_line);
+  line_number++;
+  next_line = advance(lines, &line_number, instruction_count);
   mu_assert_string_eq("M=1", next_line);
-  next_line = advance(lines, 1, instruction_count);
+  line_number++;
+  next_line = advance(lines, &line_number, instruction_count);
   mu_assert_string_eq("@sum", next_line);
 }
 MU_TEST(instruction_type_test) {

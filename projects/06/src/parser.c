@@ -60,16 +60,16 @@ int has_more_lines(int line_number, int instruction_count) {
  * Only called if has_more_lines is true
  * Initially no current instruction
  */
-char *advance(char **lines, int current_instruction, int instruction_count) {
-  char *next_instruction;
+char *advance(char **lines, int *current_instruction, int instruction_count) {
+  char *next_instruction = NULL;
   int i, white_space;
-  while (current_instruction < instruction_count) {
-    char *p = lines[current_instruction];
+  while (*current_instruction < instruction_count) {
+    char *p = lines[*current_instruction];
 
     // We check *p and *(p+1) to ensure we don't read past a null terminator
     if (*p == '/' && *(p + 1) == '/') {
       // comment
-      current_instruction++;
+      (*current_instruction)++;
     } else {
       i = 0, white_space = 1;
       // iterate through instruction until terminator
@@ -84,11 +84,11 @@ char *advance(char **lines, int current_instruction, int instruction_count) {
       }
       if (white_space) {
         // white space
-        current_instruction++;
+        (*current_instruction)++;
       } else {
         // instruction
-        next_instruction = lines[current_instruction];
-        current_instruction += instruction_count;
+        next_instruction = lines[*current_instruction];
+        return next_instruction;
       }
     }
   }
