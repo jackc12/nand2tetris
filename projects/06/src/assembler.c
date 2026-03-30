@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
     while (has_more_lines(line_number, instruction_count)) {
       printf("ln: %d\n", line_number);
-      instruction = advance(lines, line_number, instruction_count);
+      instruction = advance(lines, &line_number, instruction_count);
       printf("i: %s\n", instruction);
       switch (instruction_type(instruction)) {
       case A_INSTRUCTION:
