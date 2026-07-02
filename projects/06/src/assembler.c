@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
         jump = code_jump(jump);
         hack[instruction_number] = malloc(17);
         sprintf(hack[instruction_number], "111%s%s%s", dest, comp, jump);
-        printf("%s\n", hack[instruction_number]);
+        fprintf(file, "%s\n", hack[instruction_number]);
         instruction_number++;
         break;
 
@@ -45,6 +45,7 @@ int main(int argc, char *argv[]) {
     }
     free_line_array(lines, instruction_count);
     free_line_array(hack, instruction_number);
+    fclose(file);
   }
   return 0;
 }
