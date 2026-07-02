@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
       case A_INSTRUCTION:
         // TODO
 	a_instruction = symbol(instruction);
-        sprintf(hack[instruction_number], "0%s", a_instruction);
+        sprintf(hack[instruction_number], "%s", a_instruction);
         fprintf(file, "%s\n", hack[instruction_number]);
         break;
 
