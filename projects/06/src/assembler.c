@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
   else {
     int instruction_count, line_number = 0, instruction_number = 0;
     char **lines = constructor(argv[1], &instruction_count);
-    char *instruction = NULL, *dest, *comp, *jump;
+    char *instruction = NULL, *dest, *comp, *jump, *a_instruction;
 
     FILE *file = fopen("Prog.hack", "w");
     if (!file)
@@ -19,9 +19,13 @@ int main(int argc, char *argv[]) {
 
     while (has_more_lines(line_number, instruction_count)) {
       instruction = advance(lines, &line_number, instruction_count);
+      hack[instruction_number] = malloc(17);
       switch (instruction_type(instruction)) {
       case A_INSTRUCTION:
         // TODO
+	a_instruction = symbol(instruction);
+        sprintf(hack[instruction_number], "0%s", a_instruction);
+        fprintf(file, "%s\n", hack[instruction_number]);
         break;
 
       case C_INSTRUCTION:
@@ -31,7 +35,6 @@ int main(int argc, char *argv[]) {
         comp = code_comp(comp);
         jump = parser_jump(instruction);
         jump = code_jump(jump);
-        hack[instruction_number] = malloc(17);
         sprintf(hack[instruction_number], "111%s%s%s", dest, comp, jump);
         fprintf(file, "%s\n", hack[instruction_number]);
         instruction_number++;
