@@ -24,7 +24,7 @@ code_test: tests/code_test.c $(SRC_DIR)/code.c
 	$(CC) $(CFLAGS) -o test_runner $^
 	./test_runner
 
-test_assembler: tests/assembler_test.c $(SRC_DIR)/assembler.c
+assembler_test: tests/assembler_test.c $(SRC_DIR)/assembler.c
 	$(CC) $(CFLAGS) -o test_runner $^
 	./test_runner
 
