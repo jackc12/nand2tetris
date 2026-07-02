@@ -8,8 +8,6 @@ int main(int argc, char *argv[]) {
   if (argc != 2)
     printf("WRONG!\n");
   else {
-    // -1 because advance increments first
-    // fix later
     int instruction_count, line_number = 0, instruction_number = 0;
     char **lines = constructor(argv[1], &instruction_count);
     char *instruction = NULL, *dest, *comp, *jump;
