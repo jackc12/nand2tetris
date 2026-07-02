@@ -23,7 +23,12 @@ int main(int argc, char *argv[]) {
       switch (instruction_type(instruction)) {
       case A_INSTRUCTION:
         // TODO
-	a_instruction = symbol(instruction);
+        a_instruction = symbol(instruction);
+        if (a_instruction[0] <= '0' || a_instruction[0] <= '9') {
+          int number = atoi(a_instruction);
+          // use right bit shifting to convert to binary
+          printf("hello %d\n", number << 1);
+        }
         sprintf(hack[instruction_number], "%s", a_instruction);
         fprintf(file, "%s\n", hack[instruction_number]);
         break;
