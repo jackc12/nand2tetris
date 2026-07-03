@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+void int_to_bin(char *a_instruction, char *binary);
+
 int main(int argc, char *argv[]) {
   if (argc != 2)
     printf("WRONG!\n");
@@ -26,18 +28,8 @@ int main(int argc, char *argv[]) {
         // TODO
         a_instruction = symbol(instruction);
         if (a_instruction[0] <= '0' || a_instruction[0] <= '9') {
-          int integer = atoi(a_instruction);
           char binary[17] = "";
-          int current_len = 0;
-          for (int i = 15; i >= 0; i--) {
-            int remaining_space = sizeof(binary) - current_len;
-            int written = snprintf(binary + current_len, remaining_space, "%d",
-                                   (integer >> i) & 1);
-            current_len += written;
-            if (current_len >= (int)sizeof(binary)) {
-              break;
-            }
-          }
+          int_to_bin(a_instruction, binary);
           printf("\nbin: %s\n", binary);
         }
         sprintf(hack[instruction_number], "%s", a_instruction);
@@ -67,4 +59,18 @@ int main(int argc, char *argv[]) {
     fclose(file);
   }
   return 0;
+}
+
+void int_to_bin(char *a_instruction, char *binary) {
+  int integer = atoi(a_instruction);
+  int current_len = 0;
+  for (int i = 15; i >= 0; i--) {
+    int remaining_space = sizeof(binary) - current_len;
+    int written = snprintf(binary + current_len, remaining_space, "%d",
+                           (integer >> i) & 1);
+    current_len += written;
+    if (current_len >= (int)sizeof(binary)) {
+      break;
+    }
+  }
 }
