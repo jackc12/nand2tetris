@@ -8,6 +8,10 @@ MU_TEST(int_to_bin_test) {
   char nine[16] = "9", twelve[16] = "12", twelve_k[16] = "12000";
   int_to_bin(nine, binary, binary_size);
   mu_assert_string_eq("0000000000001001", binary);
+  int_to_bin(twelve, binary, binary_size);
+  mu_assert_string_eq("0000000000001100", binary);
+  int_to_bin(twelve_k, binary, binary_size);
+  mu_assert_string_eq("0010111011100000", binary);
 }
 MU_TEST_SUITE(test_suite) { MU_RUN_TEST(int_to_bin_test); }
 
