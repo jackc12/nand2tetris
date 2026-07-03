@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void int_to_bin(char *a_instruction, char *binary);
+void int_to_bin(char *a_instruction, char *binary, size_t binary_size);
 
 int main(int argc, char *argv[]) {
   if (argc != 2)
@@ -29,7 +29,8 @@ int main(int argc, char *argv[]) {
         a_instruction = symbol(instruction);
         if (a_instruction[0] <= '0' || a_instruction[0] <= '9') {
           char binary[17] = "";
-          int_to_bin(a_instruction, binary);
+          size_t binary_size = sizeof(binary);
+          int_to_bin(a_instruction, binary, binary_size);
           printf("\nbin: %s\n", binary);
         }
         sprintf(hack[instruction_number], "%s", a_instruction);
@@ -61,15 +62,15 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-void int_to_bin(char *a_instruction, char *binary) {
+void int_to_bin(char *a_instruction, char *binary, size_t binary_size) {
   int integer = atoi(a_instruction);
   int current_len = 0;
   for (int i = 15; i >= 0; i--) {
-    int remaining_space = sizeof(binary) - current_len;
+    int remaining_space = binary_size - current_len;
     int written = snprintf(binary + current_len, remaining_space, "%d",
                            (integer >> i) & 1);
     current_len += written;
-    if (current_len >= (int)sizeof(binary)) {
+    if (current_len >= (int) binary_size) {
       break;
     }
   }
