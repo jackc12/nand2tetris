@@ -1,5 +1,6 @@
 #include "code.h"
 #include "parser.h"
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,9 +26,19 @@ int main(int argc, char *argv[]) {
         // TODO
         a_instruction = symbol(instruction);
         if (a_instruction[0] <= '0' || a_instruction[0] <= '9') {
-          int number = atoi(a_instruction);
-          // use right bit shifting to convert to binary
-          printf("hello %d\n", number << 1);
+          int integer = atoi(a_instruction);
+          char binary[17] = "";
+          int current_len = 0;
+          for (int i = 15; i >= 0; i--) {
+            int remaining_space = sizeof(binary) - current_len;
+            int written = snprintf(binary + current_len, remaining_space, "%d",
+                                   (integer >> i) & 1);
+            current_len += written;
+            if (current_len >= (int)sizeof(binary)) {
+              break;
+            }
+          }
+          printf("\nbin: %s\n", binary);
         }
         sprintf(hack[instruction_number], "%s", a_instruction);
         fprintf(file, "%s\n", hack[instruction_number]);
