@@ -140,7 +140,7 @@ char *symbol(char *instruction) {
     return NULL;
   }
 
-  char *symbol = malloc(sizeof(char) * index);
+  char *symbol = malloc(sizeof(char) * (index + 1));
   if (symbol == NULL)
     return NULL;
 
@@ -160,7 +160,7 @@ char *parser_dest(char *instruction) {
     return "null";
 
   int index = (int)(end - instruction);
-  char *dest = malloc(sizeof(char) * index);
+  char *dest = malloc(sizeof(char) * (index + 1));
   if (dest == NULL)
     return "null";
   strncpy(dest, instruction, index);
@@ -187,7 +187,7 @@ char *parser_comp(char *instruction) {
     end = (int)(semicolon - instruction) - 1;
   }
 
-  char *dest = malloc(sizeof(char) * (end - start) + 1);
+  char *dest = malloc(sizeof(char) * (end - start + 2));
   if (dest == NULL) {
     return NULL;
   }
@@ -210,7 +210,7 @@ char *parser_jump(char *instruction) {
     start = (int)(semicolon - instruction) + 1;
 
   end = (int)strlen(instruction);
-  char *dest = malloc(sizeof(char) * (end - start) + 1);
+  char *dest = malloc(sizeof(char) * (end - start + 2));
   if (dest == NULL) {
     return NULL;
   }
