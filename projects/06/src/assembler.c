@@ -31,7 +31,6 @@ int main(int argc, char *argv[]) {
           char binary[17] = "";
           size_t binary_size = sizeof(binary);
           int_to_bin(a_instruction, binary, binary_size);
-          printf("\nbin: %s\n", binary);
         }
         fprintf(file, "%s\n", hack[instruction_number]);
         break;
