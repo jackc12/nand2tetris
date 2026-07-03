@@ -27,12 +27,11 @@ int main(int argc, char *argv[]) {
       case A_INSTRUCTION:
         // TODO
         a_instruction = symbol(instruction);
-        if (a_instruction[0] <= '0' || a_instruction[0] <= '9') {
-          char binary[17] = "";
-          size_t binary_size = sizeof(binary);
-          int_to_bin(a_instruction, binary, binary_size);
+        if (a_instruction[0] >= '0' && a_instruction[0] <= '9') {
+          int_to_bin(a_instruction, hack[instruction_number], 17);
         }
         fprintf(file, "%s\n", hack[instruction_number]);
+        instruction_number++;
         break;
 
       case C_INSTRUCTION:
