@@ -1,10 +1,11 @@
-#include "assembler.h"
 #include "code.h"
 #include "parser.h"
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+void int_to_bin(char *a_instruction, char *binary, size_t binary_size);
 
 int main(int argc, char *argv[]) {
   if (argc != 2)
@@ -32,7 +33,6 @@ int main(int argc, char *argv[]) {
           int_to_bin(a_instruction, binary, binary_size);
           printf("\nbin: %s\n", binary);
         }
-        sprintf(hack[instruction_number], "%s", a_instruction);
         fprintf(file, "%s\n", hack[instruction_number]);
         break;
 
@@ -59,4 +59,18 @@ int main(int argc, char *argv[]) {
     fclose(file);
   }
   return 0;
+}
+
+void int_to_bin(char *a_instruction, char *binary, size_t binary_size) {
+  int integer = atoi(a_instruction);
+  int current_len = 0;
+  for (int i = 15; i >= 0; i--) {
+    int remaining_space = binary_size - current_len;
+    int written = snprintf(binary + current_len, remaining_space, "%d",
+                           (integer >> i) & 1);
+    current_len += written;
+    if (current_len >= (int) binary_size) {
+      break;
+    }
+  }
 }
