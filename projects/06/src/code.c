@@ -49,7 +49,7 @@ char *code_comp(char *comp) {
   else if (strcmp(comp, "-A") == 0)
     return "0110011";
   else if (strcmp(comp, "D+1") == 0)
-    return "0111111";
+    return "0011111";
   else if (strcmp(comp, "A+1") == 0)
     return "0110111";
   else if (strcmp(comp, "D-1") == 0)
