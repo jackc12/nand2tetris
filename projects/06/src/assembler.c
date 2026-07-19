@@ -1,9 +1,9 @@
-#include "code.h"
-#include "parser.h"
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "code.h"
+#include "parser.h"
 
 void int_to_bin(char *a_instruction, char *binary, size_t binary_size);
 
