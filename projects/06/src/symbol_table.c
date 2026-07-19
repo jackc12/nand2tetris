@@ -44,7 +44,7 @@ int main() {
   HASH_FIND_STR(my_table, "R1", result);
 
   if (result) {
-    printf("Found 'b': %d\n", result->value);
+    printf("Found 'R1': %d\n", result->value);
   }
 
   return 0;
