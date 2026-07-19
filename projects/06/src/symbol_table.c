@@ -40,9 +40,9 @@ SymbolTable *constructor() {
 
 void add_entry(char *symbol, int address) {}
 
-boolean contains(char *string) { return false; }
+int contains(char *string) { return 0; }
 
-int get_address(char *symbol) { return 0 }
+int get_address(char *symbol) { return 0; }
 
 int main() {
   SymbolTable *my_table = constructor();
