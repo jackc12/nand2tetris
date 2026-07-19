@@ -32,7 +32,7 @@ int main() {
 
   // Look up a value
   SymbolTable *result = NULL;
-  HASH_FIND_STR(my_table, "b", result);
+  HASH_FIND_STR(my_table, "foenem", result);
 
   if (result) {
     printf("Found 'b': %d\n", result->value);
