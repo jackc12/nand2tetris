@@ -43,10 +43,10 @@ int main() {
 
   // Look up a value
   SymbolTable *result = NULL;
-  HASH_FIND_STR(my_table, "R1", result);
+  HASH_FIND_STR(my_table, "SCREEN", result);
 
   if (result) {
-    printf("Found 'R1': %d\n", result->value);
+    printf("Found 'SCREEN': %d\n", result->value);
   }
 
   return 0;
