@@ -4,22 +4,16 @@
 
 #include "symbol_table.h"
 
-typedef struct {
-  char key[16];
-  int value;
-  UT_HASH_HANDLE hh;
-} SymbolTable;
-
 /**
  * Creates a new empty symbol table
  */
 SymbolTable *constructor() {
   SymbolTable *symbol_table = NULL;
   char *keys[] = {"foenem", "twin"};
-  char values[] = {0, 1};
+  int values[] = {0, 1};
 
-  for (int i = 0; i < 16; i++) {
-    SymbolTable *symbol = (SymbolTable *)malloc(sizeof(SymbolTable));
+  for (int i = 0; i < 2; i++) {
+    SymbolTable *item = (SymbolTable *)malloc(sizeof(SymbolTable));
     if (item == NULL) {
       perror("Failed to allocate memory");
       exit(EXIT_FAILURE);
@@ -27,8 +21,10 @@ SymbolTable *constructor() {
     strcpy(item->key, keys[i]);
     item->value = values[i];
 
-    HASH_ADD_STR(table, key, item)
+    HASH_ADD_STR(symbol_table, key, item);
   }
+
+  return symbol_table;
 }
 
 int main() {
