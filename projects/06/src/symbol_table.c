@@ -1,4 +1,4 @@
-#include "uthash.h"
+#include "symbol_table.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,8 +14,8 @@ typedef struct {
  */
 SymbolTable *constructor() {
   SymbolTable *symbol_table = NULL;
-  char *keys[] = {};
-  char values[] = {};
+  char *keys[] = {"foenem", "twin"};
+  char values[] = {0, 1};
 
   for (int i = 0; i < 16; i++) {
     SymbolTable *symbol = (SymbolTable *)malloc(sizeof(SymbolTable));
@@ -28,4 +28,18 @@ SymbolTable *constructor() {
 
     HASH_ADD_STR(table, key, item)
   }
+}
+
+int main() {
+  SymbolTable *my_table = constructor();
+
+  // Look up a value
+  SymbolTable *result = NULL;
+  HASH_FIND_STR(my_table, "b", result);
+
+  if (result) {
+    printf("Found 'b': %d\n", result->value);
+  }
+
+  return 0;
 }

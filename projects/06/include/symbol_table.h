@@ -1,7 +1,14 @@
 #ifndef PARSER_H
 #define PARSER_H
-struct **constructor();
+#include "uthash.h"
 
+typedef struct {
+  char key[16];
+  int value;
+  UT_hash_handle hh;
+} SymbolTable;
+
+SymbolTable *constructor();
 /*
 void free_line_array(char **lines, int instruction_count);
 int has_more_lines(int line_number, int instruction_count);
