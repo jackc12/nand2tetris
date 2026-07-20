@@ -26,11 +26,9 @@ SymbolTable *constructor() {
     if (item == NULL)
       return NULL;
 
-    // Safely copy the key from the tuple
     strncpy(item->key, predefined_symbols[i].key, sizeof(item->key) - 1);
     item->key[sizeof(item->key) - 1] = '\0';
 
-    // Grab the value from the tuple
     item->value = predefined_symbols[i].value;
 
     HASH_ADD_STR(symbol_table, key, item);
