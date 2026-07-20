@@ -40,7 +40,11 @@ SymbolTable *constructor() {
 
 void add_entry(char *symbol, int address) {}
 
-int contains(char *string) { return 0; }
+int contains(char *key) {
+  SymbolTable *result = NULL;
+  HASH_FIND_INT(symbol_table, &key, result);
+  return result != NULL;
+}
 
 int get_address(char *symbol) { return 0; }
 
