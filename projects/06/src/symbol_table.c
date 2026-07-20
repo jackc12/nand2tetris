@@ -36,11 +36,22 @@ SymbolTable *constructor() {
   return symbol_table;
 }
 
+/**
+ * Frees all entries in the symbol table
+ */
+void destructor(SymbolTable *symbol_table) {
+  SymbolTable *current, *tmp;
+  HASH_ITER(hh, symbol_table, current, tmp) {
+    HASH_DEL(symbol_table, current);
+    free(current);
+  }
+}
+
 void add_entry(char *symbol, int address) {}
 
 int contains(SymbolTable *symbol_table, char *key) {
   SymbolTable *result = NULL;
-  HASH_FIND_INT(symbol_table, &key, result);
+  HASH_FIND_STR(symbol_table, key, result);
   return result != NULL;
 }
 
@@ -56,6 +67,8 @@ int main() {
   if (result) {
     printf("Found 'SCREEN': %d\n", result->value);
   }
+
+  destructor(my_table);
 
   return 0;
 }
