@@ -9,6 +9,7 @@ typedef struct {
 } SymbolTable;
 
 SymbolTable *constructor();
+void destructor(SymbolTable *symbol_table);
 /*
 void free_line_array(char **lines, int instruction_count);
 int has_more_lines(int line_number, int instruction_count);
