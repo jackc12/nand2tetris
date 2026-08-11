@@ -28,6 +28,10 @@ assembler_test: tests/assembler_test.c $(SRC_DIR)/int_to_bin.c
 	$(CC) $(CFLAGS) -o test_runner $^
 	./test_runner
 
+symbol_table_test: tests/symbol_table_test.c $(SRC_DIR)/symbol_table.c
+	$(CC) $(CFLAGS) -o test_runner $^
+	./test_runner
+
 format:
 	clang-format -i $(SRC_DIR)/*.c include/*.h tests/*.c tests/*.h
 
