@@ -57,6 +57,7 @@ int contains(SymbolTable *symbol_table, char *key) {
 
 int get_address(char *symbol) { return 0; }
 
+/*
 int main() {
   SymbolTable *my_table = constructor();
 
@@ -72,3 +73,4 @@ int main() {
 
   return 0;
 }
+*/
