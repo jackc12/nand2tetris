@@ -12,7 +12,7 @@ MU_TEST(add_entry_test) {
   SymbolTable *symbol_table = constructor(), *result = NULL;
   add_entry(symbol_table, "VON", 64);
   HASH_FIND_STR(symbol_table, "VON", result);
-  mu_assert_int_eq(64, resumt);
+  mu_assert_int_eq(64, result->value);
 }
 MU_TEST(contains_test) {
   SymbolTable *symbol_table = constructor();
