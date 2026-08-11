@@ -1,6 +1,11 @@
 #include "minunit.h"
 #include "symbol_table.h"
 
+MU_TEST(constructor_test) {
+  SymbolTable *symbol_table = constructor(), *result = NULL;
+  HASH_FIND_STR(symbol_table, "SCREEN", result);
+  mu_assert_string_eq("16384", result);
+}
 MU_TEST(contains_test) {
   SymbolTable *symbol_table = constructor();
   int contains_ = contains(symbol_table, "R0");
@@ -8,7 +13,10 @@ MU_TEST(contains_test) {
   contains_ = contains(symbol_table, "SMURK");
   mu_assert_int_eq(0, contains_);
 }
-MU_TEST_SUITE(test_suite) { MU_RUN_TEST(contains_test); }
+MU_TEST_SUITE(test_suite) {
+  MU_RUN_TEST(contains_test);
+  MU_RUN_TEST(constructor_test);
+}
 
 int main() {
   MU_RUN_SUITE(test_suite);
