@@ -4,7 +4,7 @@
 MU_TEST(constructor_test) {
   SymbolTable *symbol_table = constructor(), *result = NULL;
   HASH_FIND_STR(symbol_table, "SCREEN", result);
-  mu_assert_string_eq("16384", result);
+  mu_assert_int_eq(16384, result->value);
 }
 MU_TEST(contains_test) {
   SymbolTable *symbol_table = constructor();
