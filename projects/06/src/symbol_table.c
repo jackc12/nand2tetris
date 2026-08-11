@@ -50,6 +50,9 @@ void destructor(SymbolTable *symbol_table) {
 void add_entry(SymbolTable *symbol_table, char *symbol, int address) {
 
   SymbolTable *item = (SymbolTable *)malloc(sizeof(SymbolTable));
+  if (item == NULL)
+    return;
+
   strncpy(item->key, symbol, sizeof(symbol) - 1);
   item->key[sizeof(item->key) - 1] = '\0';
 
