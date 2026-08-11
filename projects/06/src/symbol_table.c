@@ -71,21 +71,3 @@ int get_address(SymbolTable *symbol_table, char *symbol) {
   HASH_FIND_STR(symbol_table, symbol, result);
   return result->value;
 }
-
-/*
-int main() {
-  SymbolTable *my_table = constructor();
-
-  // Look up a value
-  SymbolTable *result = NULL;
-  HASH_FIND_STR(my_table, "SCREEN", result);
-
-  if (result) {
-    printf("Found 'SCREEN': %d\n", result->value);
-  }
-
-  destructor(my_table);
-
-  return 0;
-}
-*/

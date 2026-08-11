@@ -15,7 +15,7 @@ MU_TEST(add_entry_test) {
   mu_assert_int_eq(64, result->value);
 }
 MU_TEST(get_address_test) {
-  SymbolTable *symbol_table = constructor(); 
+  SymbolTable *symbol_table = constructor();
   int result = get_address(symbol_table, "SCREEN");
   mu_assert_int_eq(16384, result);
 }
