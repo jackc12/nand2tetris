@@ -14,6 +14,11 @@ MU_TEST(add_entry_test) {
   HASH_FIND_STR(symbol_table, "VON", result);
   mu_assert_int_eq(64, result->value);
 }
+MU_TEST(get_address_test) {
+  SymbolTable *symbol_table = constructor(); 
+  int result = get_address(symbol_table, "SCREEN");
+  mu_assert_int_eq(16384, result);
+}
 MU_TEST(contains_test) {
   SymbolTable *symbol_table = constructor();
   int contains_ = contains(symbol_table, "R0");
@@ -24,6 +29,7 @@ MU_TEST(contains_test) {
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(constructor_test);
   MU_RUN_TEST(add_entry_test);
+  MU_RUN_TEST(get_address_test);
   MU_RUN_TEST(contains_test);
 }
 

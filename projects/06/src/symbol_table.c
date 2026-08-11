@@ -66,7 +66,11 @@ int contains(SymbolTable *symbol_table, char *key) {
   return result != NULL;
 }
 
-int get_address(char *symbol) { return 0; }
+int get_address(SymbolTable *symbol_table, char *symbol) {
+  SymbolTable *result;
+  HASH_FIND_STR(symbol_table, symbol, result);
+  return result->value;
+}
 
 /*
 int main() {
