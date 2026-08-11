@@ -47,7 +47,7 @@ void destructor(SymbolTable *symbol_table) {
   }
 }
 
-void add_entry(char *symbol, int address) {}
+void add_entry(SymbolTable *symbol_table, char *symbol, int address) {}
 
 int contains(SymbolTable *symbol_table, char *key) {
   SymbolTable *result = NULL;
