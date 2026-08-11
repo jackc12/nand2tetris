@@ -3,6 +3,8 @@
 
 MU_TEST(constructor_test) {
   SymbolTable *symbol_table = constructor(), *result = NULL;
+  HASH_FIND_STR(symbol_table, "R0", result);
+  mu_assert_int_eq(0, result->value);
   HASH_FIND_STR(symbol_table, "SCREEN", result);
   mu_assert_int_eq(16384, result->value);
 }
