@@ -47,7 +47,9 @@ void destructor(SymbolTable *symbol_table) {
   }
 }
 
-void add_entry(SymbolTable *symbol_table, char *symbol, int address) {}
+void add_entry(SymbolTable *symbol_table, char *symbol, int address) {
+  HASH_ADD_STR(symbol_table, symbol, address);
+}
 
 int contains(SymbolTable *symbol_table, char *key) {
   SymbolTable *result = NULL;
