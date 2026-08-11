@@ -11,6 +11,6 @@ typedef struct {
 SymbolTable *constructor();
 void destructor(SymbolTable *symbol_table);
 int contains(SymbolTable *symbol_table, char *key);
-int add_entry(SymbolTable *symbol_table, char *key);
+void add_entry(SymbolTable *symbol_table, char *symbol, int address);
 
 #endif
