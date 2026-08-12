@@ -7,7 +7,7 @@
 /**
  * Creates a new empty symbol table
  */
-SymbolTable *constructor() {
+SymbolTable *new_symbol_table() {
   SymbolTable *symbol_table = NULL;
   struct {
     char *key;
@@ -39,7 +39,7 @@ SymbolTable *constructor() {
 /**
  * Frees all entries in the symbol table
  */
-void destructor(SymbolTable *symbol_table) {
+void destroy_symbol_table(SymbolTable *symbol_table) {
   SymbolTable *current, *tmp;
   HASH_ITER(hh, symbol_table, current, tmp) {
     HASH_DEL(symbol_table, current);

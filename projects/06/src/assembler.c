@@ -19,6 +19,9 @@ int main(int argc, char *argv[]) {
     FILE *file = fopen("Prog.hack", "w");
     if (!file)
       return 1;
+
+    while(has_more_lines(line_number, instruction_count)) {
+    }
     char **hack = malloc(instruction_count * sizeof(char *));
 
     while (has_more_lines(line_number, instruction_count)) {
