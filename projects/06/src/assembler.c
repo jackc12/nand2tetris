@@ -22,6 +22,9 @@ int main(int argc, char *argv[]) {
 
     SymbolTable *symbol_table = new_symbol_table();
     while (has_more_lines(line_number, instruction_count)) {
+      instruction = advance(lines, &line_number, instruction_count);
+      if (instruction_type(instruction) == L_INSTRUCTION) {
+      }
     }
     char **hack = malloc(instruction_count * sizeof(char *));
 
