@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     if (!file)
       return 1;
 
-    while(has_more_lines(line_number, instruction_count)) {
+    while (has_more_lines(line_number, instruction_count)) {
     }
     char **hack = malloc(instruction_count * sizeof(char *));
 
