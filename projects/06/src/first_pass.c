@@ -16,7 +16,6 @@ void first_pass(SymbolTable **symbol_table, char **lines,
 
   while (has_more_lines(line_number, instruction_count)) {
     char *instruction = lines[line_number];
-    printf("instruction: %s; in: %d; ln: %d\n", instruction, instruction_number, line_number);
 
     if (instruction_type(instruction) == L_INSTRUCTION) {
       char *label = symbol(instruction);
