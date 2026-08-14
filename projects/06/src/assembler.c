@@ -29,7 +29,6 @@ int main(int argc, char *argv[]) {
 
     // should prob be in own module
     int address, free_address = 16;
-    char *symbol;
     while (has_more_lines(line_number, instruction_count)) {
       instruction = advance(lines, &line_number, instruction_count);
       hack[instruction_number] = malloc(17);
@@ -44,10 +43,11 @@ int main(int argc, char *argv[]) {
           address = get_address(symbol_table, a_instruction);
           if (address == -1) {
             add_entry(symbol_table, a_instruction, free_address);
-            address = free_address;
+	    snprintf(a_instruction, 16, "%d", free_address);
+            int_to_bin(a_instruction, hack[instruction_number], 17);
             free_address++;
           }
-          fprintf(file, "%s\n", address);
+          fprintf(file, "%s\n", hack[instruction_number]);
         }
         instruction_number++;
         break;
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
     free_line_array(hack, instruction_number);
     fclose(file);
   }
-  printf("i: %s", get_entry(symbol_table, "i");
-  printf("sum: %s", get_entry(symbol_table, "sum");
+  //printf("i: %s", get_entry(symbol_table, "i");
+  //printf("sum: %s", get_entry(symbol_table, "sum");
   return 0;
 }
