@@ -27,9 +27,8 @@ char **constructor(char *file_name, int *instruction_count) {
       lines = realloc(lines, capacity * sizeof(char *));
     }
 
-    // Clean newline and copy to heap
-    buffer[strcspn(buffer, "\n")] = '\0';
-    lines[*instruction_count] = strdup(buffer);
+    // Strip leading/trailing whitespace (incl. the newline) and copy to heap
+    lines[*instruction_count] = strdup(strip(buffer));
     (*instruction_count)++;
   }
 
