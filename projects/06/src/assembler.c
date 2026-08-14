@@ -85,6 +85,7 @@ int main(int argc, char *argv[]) {
       }
       line_number++;
     }
+    print_symbol_table(&symbol_table);
     destroy_symbol_table(&symbol_table);
     free_line_array(lines, instruction_count);
     free_line_array(hack, instruction_number);
