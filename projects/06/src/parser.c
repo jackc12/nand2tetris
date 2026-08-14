@@ -115,7 +115,7 @@ instruction_t instruction_type(char *instruction) {
       }
       i++;
     }
-  } else {
+  } else if (instruction[0] != '/' && instruction[1] != '/') {
     // brittle but valid assembly is an invariant
     type = C_INSTRUCTION;
   }
