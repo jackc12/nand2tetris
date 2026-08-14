@@ -76,8 +76,8 @@ int main(int argc, char *argv[]) {
     free_line_array(lines, instruction_count);
     free_line_array(hack, instruction_number);
     fclose(file);
-    printf("i: %d", get_address(symbol_table, "i"));
-    printf("i: %d", get_address(symbol_table, "sum"));
+    printf("i: %d\n", get_address(symbol_table, "i"));
+    printf("sum: %d\n", get_address(symbol_table, "sum"));
   }
   return 0;
 }
