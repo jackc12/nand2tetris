@@ -16,8 +16,8 @@ MU_TEST(int_to_bin_test) {
 }
 MU_TEST(first_pass_test) {
   int instruction_count;
-  char **lines = constructor("asm/first_pass_test.asm", &instruction_count);
-  printf("First line: %s", lines[0]);
+  char **lines = constructor("tests/asm/first_pass_test.asm", &instruction_count);
+   printf("First line: %s", lines[0]);
 }
 MU_TEST_SUITE(test_suite) {
   MU_RUN_TEST(int_to_bin_test);
