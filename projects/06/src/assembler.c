@@ -31,8 +31,8 @@ int main(int argc, char *argv[]) {
 
     while (has_more_lines(line_number, instruction_count)) {
       instruction = advance(lines, &line_number, instruction_count);
-      if (instruction == "@RET_ADDRESS_CALL0" ||
-          instruction == "(RET_ADDRESS_CALL0)") {
+      if (strcmp(instruction, "@RET_ADDRESS_CALL0") == 0 ||
+          strcmp(instruction, "@RET_ADDRESS_CALL0") == 0) {
         printf("instruction: %s", instruction);
       }
       hack[instruction_number] = malloc(17);
