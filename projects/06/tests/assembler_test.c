@@ -13,7 +13,11 @@ MU_TEST(int_to_bin_test) {
   int_to_bin(twelve_k, binary, binary_size);
   mu_assert_string_eq("0010111011100000", binary);
 }
-MU_TEST_SUITE(test_suite) { MU_RUN_TEST(int_to_bin_test); }
+MU_TEST(first_pass_test) {}
+MU_TEST_SUITE(test_suite) {
+  MU_RUN_TEST(int_to_bin_test);
+  MU_RUN_TEST(first_pass_test);
+}
 
 int main() {
   MU_RUN_SUITE(test_suite);
