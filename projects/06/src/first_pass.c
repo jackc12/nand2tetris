@@ -13,8 +13,11 @@ void first_pass(SymbolTable **symbol_table, char **lines,
                 int instruction_count) {
   int instruction_number = 0, line_number = 0;
 
+  printf("instruction_count: %d\n", instruction_count);
+
   while (has_more_lines(line_number, instruction_count)) {
-    // advance stops on the instruction without consuming it
+    printf("line: %s\n", line[line_number]);
+    printf("instruction_number: %d\n", instruction_number);
     char *instruction = advance(lines, &line_number, instruction_count);
     if (instruction == NULL)
       return;
@@ -27,8 +30,8 @@ void first_pass(SymbolTable **symbol_table, char **lines,
       }
     } else if (instruction_type(instruction) == A_INSTRUCTION ||
                instruction_type(instruction) == C_INSTRUCTION) {
-	    instruction_number++;
+      instruction_number++;
     }
-      line_number++;
+    line_number++;
   }
 }
