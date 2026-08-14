@@ -1,4 +1,5 @@
 #include "parser.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -220,4 +221,14 @@ char *parser_jump(char *instruction) {
   strncpy(dest, &instruction[start], end - start + 1);
   dest[end - start + 1] = '\0';
   return dest;
+}
+
+char *strip(char *s) {
+  char *end = s + strlen(s);
+  while (end > s && isspace((unsigned char)end[-1]))
+    end--;
+  *end = '\0';
+  while (*s && isspace((unsigned char)*s))
+    s++;
+  return s;
 }
