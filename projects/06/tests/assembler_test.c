@@ -19,7 +19,6 @@ MU_TEST(first_pass_test) {
   int instruction_count, line_number;
   char **lines =
       constructor("tests/asm/first_pass_test.asm", &instruction_count);
-  printf("First line: %s", lines[0]);
   SymbolTable *symbol_table = new_symbol_table();
   first_pass(&symbol_table, lines, instruction_count);
   line_number = get_address(symbol_table, "LOOP");
