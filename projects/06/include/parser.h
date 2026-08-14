@@ -1,6 +1,11 @@
 #ifndef PARSER_H
 #define PARSER_H
-typedef enum { A_INSTRUCTION, C_INSTRUCTION, L_INSTRUCTION } instruction_t;
+typedef enum {
+  A_INSTRUCTION,
+  C_INSTRUCTION,
+  L_INSTRUCTION,
+  NOT_INSTRUCTION
+} instruction_t;
 char **constructor(char *file_name, int *instruction_count);
 void free_line_array(char **lines, int instruction_count);
 int has_more_lines(int line_number, int instruction_count);
