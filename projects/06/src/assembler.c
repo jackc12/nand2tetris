@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
   if (argc != 2)
     printf("WRONG!\n");
   else {
-    int instruction_count, line_number = 0, instruction_number = 0;
+    int address, instruction_count, line_number = 0, instruction_number = 0;
     char **lines = constructor(argv[1], &instruction_count);
     char *instruction = NULL, *dest, *comp, *jump, *a_instruction;
 
@@ -36,6 +36,8 @@ int main(int argc, char *argv[]) {
         a_instruction = symbol(instruction);
         if (a_instruction[0] >= '0' && a_instruction[0] <= '9') {
           int_to_bin(a_instruction, hack[instruction_number], 17);
+        } else {
+          address = get_address(symbol_table, a_instruction);
         }
         fprintf(file, "%s\n", hack[instruction_number]);
         instruction_number++;
