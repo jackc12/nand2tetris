@@ -8,83 +8,76 @@
 
 // void int_to_bin(char *a_instruction, char *binary, size_t binary_size);
 
-// void first_pass(char *symbol_table, char **lines, int line_number,
+void first_pass(char *symbol_table, char **lines, int line_number,
                 int instruction_count) {
-                  while (has_more_lines(line_number, instruction_count)) {
-                    instruction =
-                        advance(lines, &line_number, instruction_count);
-                    if (instruction_type(instruction) == L_INSTRUCTION) {
-                      int len = strlen(str);
-                      char symbol[len - 2];
-                      strncpy(symbol, str + 1, len - 2);
-                      add_entry(symbol_table, symbol, instruction_count + 1)
-                    } else {
-                      return;
-                    }
-                  }
-                }
+  while (has_more_lines(line_number, instruction_count)) {
+    instruction = advance(lines, &line_number, instruction_count);
+    if (instruction_type(instruction) == L_INSTRUCTION) {
+      int len = strlen(str);
+      char symbol[len - 2];
+      strncpy(symbol, str + 1, len - 2);
+      add_entry(symbol_table, symbol, instruction_count + 1)
+    } else {
+      return;
+    }
+  }
+}
 
-                int main(int argc, char *argv[]) {
-                  if (argc != 2)
-                    printf("WRONG!\n");
-                  else {
-                    int instruction_count, line_number = 0,
-                                           instruction_number = 0;
-                    char **lines = constructor(argv[1], &instruction_count);
-                    char *instruction = NULL, *dest, *comp, *jump,
-                         *a_instruction;
+int main(int argc, char *argv[]) {
+  if (argc != 2)
+    printf("WRONG!\n");
+  else {
+    int instruction_count, line_number = 0, instruction_number = 0;
+    char **lines = constructor(argv[1], &instruction_count);
+    char *instruction = NULL, *dest, *comp, *jump, *a_instruction;
 
-                    FILE *file = fopen("Prog.hack", "w");
-                    if (!file)
-                      return 1;
+    FILE *file = fopen("Prog.hack", "w");
+    if (!file)
+      return 1;
 
-                    // first pass
-                    SymbolTable *symbol_table = new_symbol_table();
-                    symbol_table = first_pass(&symbol_table, lines, line_number,
-                                              instruction_count);
+    // first pass
+    SymbolTable *symbol_table = new_symbol_table();
+    symbol_table =
+        first_pass(&symbol_table, lines, line_number, instruction_count);
 
-                    // second pass
-                    char **hack = malloc(instruction_count * sizeof(char *));
+    // second pass
+    char **hack = malloc(instruction_count * sizeof(char *));
 
-                    while (has_more_lines(line_number, instruction_count)) {
-                      instruction =
-                          advance(lines, &line_number, instruction_count);
-                      hack[instruction_number] = malloc(17);
-                      switch (instruction_type(instruction)) {
-                      case A_INSTRUCTION:
-                        // TODO
-                        a_instruction = symbol(instruction);
-                        if (a_instruction[0] >= '0' &&
-                            a_instruction[0] <= '9') {
-                          int_to_bin(a_instruction, hack[instruction_number],
-                                     17);
-                        }
-                        fprintf(file, "%s\n", hack[instruction_number]);
-                        instruction_number++;
-                        break;
+    while (has_more_lines(line_number, instruction_count)) {
+      instruction = advance(lines, &line_number, instruction_count);
+      hack[instruction_number] = malloc(17);
+      switch (instruction_type(instruction)) {
+      case A_INSTRUCTION:
+        // TODO
+        a_instruction = symbol(instruction);
+        if (a_instruction[0] >= '0' && a_instruction[0] <= '9') {
+          int_to_bin(a_instruction, hack[instruction_number], 17);
+        }
+        fprintf(file, "%s\n", hack[instruction_number]);
+        instruction_number++;
+        break;
 
-                      case C_INSTRUCTION:
-                        dest = parser_dest(instruction);
-                        dest = code_dest(dest);
-                        comp = parser_comp(instruction);
-                        comp = code_comp(comp);
-                        jump = parser_jump(instruction);
-                        jump = code_jump(jump);
-                        sprintf(hack[instruction_number], "111%s%s%s", comp,
-                                dest, jump);
-                        fprintf(file, "%s\n", hack[instruction_number]);
-                        instruction_number++;
-                        break;
+      case C_INSTRUCTION:
+        dest = parser_dest(instruction);
+        dest = code_dest(dest);
+        comp = parser_comp(instruction);
+        comp = code_comp(comp);
+        jump = parser_jump(instruction);
+        jump = code_jump(jump);
+        sprintf(hack[instruction_number], "111%s%s%s", comp, dest, jump);
+        fprintf(file, "%s\n", hack[instruction_number]);
+        instruction_number++;
+        break;
 
-                      case L_INSTRUCTION:
-                        // TODO
-                        break;
-                      }
-                      line_number++;
-                    }
-                    free_line_array(lines, instruction_count);
-                    free_line_array(hack, instruction_number);
-                    fclose(file);
-                  }
-                  return 0;
-                }
+      case L_INSTRUCTION:
+        // TODO
+        break;
+      }
+      line_number++;
+    }
+    free_line_array(lines, instruction_count);
+    free_line_array(hack, instruction_number);
+    fclose(file);
+  }
+  return 0;
+}
