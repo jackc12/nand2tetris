@@ -1,7 +1,7 @@
-#include "parser.h"
-#include "symbol_table.h"
 #include "assembler.h"
 #include "minunit.h"
+#include "parser.h"
+#include "symbol_table.h"
 #include <stddef.h>
 
 MU_TEST(int_to_bin_test) {
@@ -20,8 +20,7 @@ MU_TEST(first_pass_test) {
   char **lines =
       constructor("tests/asm/first_pass_test.asm", &instruction_count);
   printf("First line: %s", lines[0]);
-  SymbolTable *symbol_table =
-      new_symbol_table();
+  SymbolTable *symbol_table = new_symbol_table();
   first_pass(&symbol_table, lines, 0, instruction_count);
   line_number = get_address(symbol_table, "LOOP");
   mu_assert_int_eq(4, line_number);
