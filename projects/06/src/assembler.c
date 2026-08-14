@@ -8,8 +8,8 @@
 
 void int_to_bin(char *a_instruction, char *binary, size_t binary_size);
 
-SymbolTable first_pass(char *symbol_table, char **lines, int line_number,
-                       int instruction_count) {
+void first_pass(char *symbol_table, char **lines, int line_number,
+                int instruction_count) {
   while (has_more_lines(line_number, instruction_count)) {
     instruction = advance(lines, &line_number, instruction_count);
     if (instruction_type(instruction) == L_INSTRUCTION) {
@@ -17,6 +17,8 @@ SymbolTable first_pass(char *symbol_table, char **lines, int line_number,
       char symbol[len - 2];
       strncpy(symbol, str + 1, len - 2);
       add_entry(symbol_table, symbol, instruction_count + 1)
+    } else {
+      return;
     }
   }
 }
