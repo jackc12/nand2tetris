@@ -8,6 +8,19 @@
 
 void int_to_bin(char *a_instruction, char *binary, size_t binary_size);
 
+SymbolTable first_pass(char *symbol_table, char **lines, int line_number,
+                       int instruction_count) {
+  while (has_more_lines(line_number, instruction_count)) {
+    instruction = advance(lines, &line_number, instruction_count);
+    if (instruction_type(instruction) == L_INSTRUCTION) {
+      int len = strlen(str);
+      char symbol[len - 2];
+      strncpy(symbol, str + 1, len - 2);
+      add_entry(symbol_table, symbol, instruction_count + 1)
+    }
+  }
+}
+
 int main(int argc, char *argv[]) {
   if (argc != 2)
     printf("WRONG!\n");
@@ -22,15 +35,8 @@ int main(int argc, char *argv[]) {
 
     // first pass
     SymbolTable *symbol_table = new_symbol_table();
-    while (has_more_lines(line_number, instruction_count)) {
-      instruction = advance(lines, &line_number, instruction_count);
-      if (instruction_type(instruction) == L_INSTRUCTION) {
-        int len = strlen(str);
-        char symbol[len - 2];
-        strncpy(symbol, str + 1, len - 2);
-        add_entry(symbol_table, symbol, instruction_count + 1)
-      }
-    }
+    symbol_table =
+        first_pass(&symbol_table, lines, line_number, instruction_count);
 
     // second pass
     char **hack = malloc(instruction_count * sizeof(char *));
