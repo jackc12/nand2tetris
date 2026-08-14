@@ -6,9 +6,9 @@
 #include "code.h"
 #include "parser.h"
 
-void int_to_bin(char *a_instruction, char *binary, size_t binary_size);
+// void int_to_bin(char *a_instruction, char *binary, size_t binary_size);
 
-void first_pass(char *symbol_table, char **lines, int line_number,
+// void first_pass(char *symbol_table, char **lines, int line_number,
                 int instruction_count) {
   while (has_more_lines(line_number, instruction_count)) {
     instruction = advance(lines, &line_number, instruction_count);

@@ -1,4 +1,5 @@
 #include "assembler.h"
+#include "parser.h"
 #include "minunit.h"
 #include <stddef.h>
 
