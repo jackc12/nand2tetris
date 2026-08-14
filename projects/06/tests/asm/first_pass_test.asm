@@ -21,7 +21,7 @@
    // i++
    @i
    M=M+1
-   @LOOK
+   @LOOP
    0;JMP
 (STOP)
    @sum
