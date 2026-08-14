@@ -51,6 +51,7 @@ int main(int argc, char *argv[]) {
             int_to_bin(a_instruction, hack[instruction_number], 17);
           }
         }
+	    printf("asm: %s; hack: %s; instruction_number: %d\n", a_instruction, hack[instruction_number], instruction_number);
         fprintf(file, "%s\n", hack[instruction_number]);
         instruction_number++;
         break;
