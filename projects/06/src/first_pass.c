@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 #include "assembler.h"
@@ -33,6 +32,7 @@ void first_pass(SymbolTable **symbol_table, char **lines,
                instruction_type(instruction) == C_INSTRUCTION) {
       instruction_number++;
     }
+    printf("instruction_type: %d", instruction_type(instruction));
     line_number++;
   }
 }
