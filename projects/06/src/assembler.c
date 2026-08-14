@@ -20,12 +20,19 @@ int main(int argc, char *argv[]) {
     if (!file)
       return 1;
 
+    // first pass
     SymbolTable *symbol_table = new_symbol_table();
     while (has_more_lines(line_number, instruction_count)) {
       instruction = advance(lines, &line_number, instruction_count);
       if (instruction_type(instruction) == L_INSTRUCTION) {
+        int len = strlen(str);
+        char symbol[len - 2];
+        strncpy(symbol, str + 1, len - 2);
+        add_entry(symbol_table, symbol, instruction_count + 1)
       }
     }
+
+    // second pass
     char **hack = malloc(instruction_count * sizeof(char *));
 
     while (has_more_lines(line_number, instruction_count)) {
