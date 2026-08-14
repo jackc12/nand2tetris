@@ -73,8 +73,6 @@ int main(int argc, char *argv[]) {
       }
       line_number++;
     }
-    printf("i: %d\n", get_address(symbol_table, "i"));
-    printf("sum: %d\n", get_address(symbol_table, "sum"));
     destroy_symbol_table(&symbol_table);
     free_line_array(lines, instruction_count);
     free_line_array(hack, instruction_number);
