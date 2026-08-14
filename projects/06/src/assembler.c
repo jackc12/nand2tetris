@@ -46,6 +46,9 @@ int main(int argc, char *argv[]) {
             snprintf(a_instruction, 16, "%d", free_address);
             int_to_bin(a_instruction, hack[instruction_number], 17);
             free_address++;
+          } else {
+            snprintf(a_instruction, 16, "%d", address);
+            int_to_bin(a_instruction, hack[instruction_number], 17);
           }
         }
         fprintf(file, "%s\n", hack[instruction_number]);
