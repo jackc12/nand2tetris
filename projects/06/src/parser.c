@@ -101,7 +101,6 @@ char *advance(char **lines, int *current_instruction, int instruction_count) {
  * Only called if instructionType is A_INSTRUCTION or L_INSTRUCTION
  */
 instruction_t instruction_type(char *instruction) {
-  printf("instruction: %c\n", instruction[0]);
   instruction_t type;
   int i;
   // brittle
