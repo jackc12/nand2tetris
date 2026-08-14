@@ -3,7 +3,7 @@
 #include "uthash.h"
 
 typedef struct {
-  char key[26];
+  char key[100];
   int value;
   UT_hash_handle hh;
 } SymbolTable;
