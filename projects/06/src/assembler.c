@@ -24,11 +24,11 @@ int main(int argc, char *argv[]) {
     SymbolTable *symbol_table = new_symbol_table();
     first_pass(&symbol_table, lines, instruction_count);
 
+    // should prob be in own module
+    int address, free_address = 16;
     // second pass
     char **hack = malloc(instruction_count * sizeof(char *));
 
-    // should prob be in own module
-    int address, free_address = 16;
     while (has_more_lines(line_number, instruction_count)) {
       instruction = advance(lines, &line_number, instruction_count);
       hack[instruction_number] = malloc(17);
@@ -76,8 +76,8 @@ int main(int argc, char *argv[]) {
     free_line_array(lines, instruction_count);
     free_line_array(hack, instruction_number);
     fclose(file);
+    printf("i: %d", get_address(symbol_table, "i"));
+    printf("i: %d", get_address(symbol_table, "sum"));
   }
-  // printf("i: %s", get_entry(symbol_table, "i");
-  // printf("sum: %s", get_entry(symbol_table, "sum");
   return 0;
 }
