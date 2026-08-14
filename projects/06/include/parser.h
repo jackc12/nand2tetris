@@ -15,5 +15,6 @@ char *symbol(char *instruction);
 char *parser_dest(char *instruction);
 char *parser_comp(char *instruction);
 char *parser_jump(char *instruction);
+char *strip(char *s);
 
 #endif
