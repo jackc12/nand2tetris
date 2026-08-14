@@ -38,7 +38,6 @@ int main(int argc, char *argv[]) {
         a_instruction = symbol(instruction);
         if (a_instruction[0] >= '0' && a_instruction[0] <= '9') {
           int_to_bin(a_instruction, hack[instruction_number], 17);
-          fprintf(file, "%s\n", hack[instruction_number]);
         } else {
           address = get_address(symbol_table, a_instruction);
 
@@ -48,8 +47,8 @@ int main(int argc, char *argv[]) {
             int_to_bin(a_instruction, hack[instruction_number], 17);
             free_address++;
           }
-          fprintf(file, "%s\n", hack[instruction_number]);
         }
+        fprintf(file, "%s\n", hack[instruction_number]);
         instruction_number++;
         break;
 
