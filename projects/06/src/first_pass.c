@@ -27,8 +27,6 @@ void first_pass(SymbolTable **symbol_table, char **lines,
                instruction_type(instruction) == C_INSTRUCTION) {
       instruction_number++;
     }
-    printf("instruction: %s\n", instruction);
-    printf("instruction_number: %d\n", instruction_number);
     line_number++;
   }
 }
