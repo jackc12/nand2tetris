@@ -153,7 +153,7 @@ char *symbol(char *instruction) {
 
   if (strcmp(instruction, "@RET_ADDRESS_CALL0") == 0 ||
       strcmp(instruction, "(RET_ADDRESS_CALL0)") == 0) {
-    printf("i: %s; s: %s", instruction, symbol);
+    printf("i: %s; s: %s\n", instruction, symbol);
   }
   return symbol;
 }
