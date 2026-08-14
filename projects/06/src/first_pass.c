@@ -22,9 +22,12 @@ void first_pass(SymbolTable **symbol_table, char **lines,
     if (instruction_type(instruction) == L_INSTRUCTION) {
       char *label = symbol(instruction);
       if (label != NULL) {
-        add_entry(symbol_table, label, address);
+        add_entry(symbol_table, label, line_number);
         free(label);
       }
+    } else if (instruction_type(instruction) == A_INSTRUCTION ||
+               instruction_type(instruction) == C_INSTRUCTION) {
+      line_number++;
     }
   }
 }
