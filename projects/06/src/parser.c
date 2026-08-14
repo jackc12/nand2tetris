@@ -150,11 +150,6 @@ char *symbol(char *instruction) {
 
   strncpy(symbol, &instruction[1], index);
   symbol[index] = '\0';
-
-  if (strcmp(instruction, "@RET_ADDRESS_CALL0") == 0 ||
-      strcmp(instruction, "(RET_ADDRESS_CALL0)") == 0) {
-    printf("i: %s; s: %s\n", instruction, symbol);
-  }
   return symbol;
 }
 

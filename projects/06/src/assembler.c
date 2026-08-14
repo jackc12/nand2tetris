@@ -31,14 +31,6 @@ int main(int argc, char *argv[]) {
 
     while (has_more_lines(line_number, instruction_count)) {
       instruction = advance(lines, &line_number, instruction_count);
-      if (strcmp(instruction, "@RET_ADDRESS_CALL0") == 0 ||
-          strcmp(instruction, "(RET_ADDRESS_CALL0)") == 0) {
-        printf("instruction: %s\n", instruction);
-        address = get_address(symbol_table, "@RET_ADDRESS_CALL0");
-        printf("@RET_ADDRESS_CALL0: %d\n", address);
-        address = get_address(symbol_table, "RET_ADDRESS_CALL0");
-        printf("(RET_ADDRESS_CALL0): %d\n", address);
-      }
       hack[instruction_number] = malloc(30);
       switch (instruction_type(instruction)) {
       case A_INSTRUCTION:
@@ -59,8 +51,6 @@ int main(int argc, char *argv[]) {
             int_to_bin(a_instruction, hack[instruction_number], 30);
           }
         }
-        // printf("asm: %s; hack: %s; in: %d; ln: %d\n", a_instruction,
-        // hack[instruction_number], instruction_number, line_number);
         fprintf(file, "%s\n", hack[instruction_number]);
         instruction_number++;
         break;
@@ -85,7 +75,6 @@ int main(int argc, char *argv[]) {
       }
       line_number++;
     }
-    print_symbol_table(&symbol_table);
     destroy_symbol_table(&symbol_table);
     free_line_array(lines, instruction_count);
     free_line_array(hack, instruction_number);
