@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 
     // first pass
     SymbolTable *symbol_table = new_symbol_table();
-    first_pass(&symbol_table, lines, line_number, instruction_count);
+    first_pass(&symbol_table, lines, instruction_count);
 
     // second pass
     char **hack = malloc(instruction_count * sizeof(char *));

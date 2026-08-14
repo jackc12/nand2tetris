@@ -9,9 +9,9 @@
  * instruction that follows it. Labels generate no code, so only real
  * instructions advance the address.
  */
-void first_pass(SymbolTable **symbol_table, char **lines, int line_number,
+void first_pass(SymbolTable **symbol_table, char **lines,
                 int instruction_count) {
-  int address = 0;
+  int line_number = 0;
 
   while (has_more_lines(line_number, instruction_count)) {
     // advance stops on the instruction without consuming it
@@ -25,9 +25,6 @@ void first_pass(SymbolTable **symbol_table, char **lines, int line_number,
         add_entry(symbol_table, label, address);
         free(label);
       }
-    } else {
-      address++;
     }
-    line_number++;
   }
 }

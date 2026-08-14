@@ -21,7 +21,7 @@ MU_TEST(first_pass_test) {
       constructor("tests/asm/first_pass_test.asm", &instruction_count);
   printf("First line: %s", lines[0]);
   SymbolTable *symbol_table = new_symbol_table();
-  first_pass(&symbol_table, lines, 0, instruction_count);
+  first_pass(&symbol_table, lines, instruction_count);
   line_number = get_address(symbol_table, "LOOP");
   mu_assert_int_eq(4, line_number);
   line_number = get_address(symbol_table, "STOP");
