@@ -1,12 +1,24 @@
 // This file is part of www.nand2tetris.org
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
+// File name: projects/6/max/MaxL.asm
 
-// Computes R0 = 2 + 3  (R0 refers to RAM[0])
+// Symbol-less version of the Max.asm program.
+// Designed for testing the basic version of the assembler.
 
-@2
-D=A
-@3
-D=D+A
 @0
+D=M
+@1
+D=D-M
+@10
+D;JGT
+@1
+D=M
+@12
+0;JMP
+@0
+D=M
+@2
 M=D
+@14
+0;JMP
