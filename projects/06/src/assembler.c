@@ -34,6 +34,10 @@ int main(int argc, char *argv[]) {
       if (strcmp(instruction, "@RET_ADDRESS_CALL0") == 0 ||
           strcmp(instruction, "(RET_ADDRESS_CALL0)") == 0) {
         printf("instruction: %s\n", instruction);
+        address = get_address(symbol_table, "@RET_ADDRESS_CALL");
+        printf("@RET_ADDRESS_CALL: %d\n", address);
+        address = get_address(symbol_table, "RET_ADDRESS_CALL");
+        printf("(RET_ADDRESS_CALL): %d\n", address);
       }
       hack[instruction_number] = malloc(17);
       switch (instruction_type(instruction)) {
