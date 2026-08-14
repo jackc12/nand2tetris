@@ -1,0 +1,33 @@
+#include <stdlib.h>
+
+#include "assembler.h"
+#include "parser.h"
+#include "symbol_table.h"
+
+/**
+ * Records every (LABEL) in the symbol table, bound to the address of the
+ * instruction that follows it. Labels generate no code, so only real
+ * instructions advance the address.
+ */
+void first_pass(SymbolTable **symbol_table, char **lines, int line_number,
+                int instruction_count) {
+  int address = 0;
+
+  while (has_more_lines(line_number, instruction_count)) {
+    // advance stops on the instruction without consuming it
+    char *instruction = advance(lines, &line_number, instruction_count);
+    if (instruction == NULL)
+      return;
+
+    if (instruction_type(instruction) == L_INSTRUCTION) {
+      char *label = symbol(instruction);
+      if (label != NULL) {
+        add_entry(symbol_table, label, address);
+        free(label);
+      }
+    } else {
+      address++;
+    }
+    line_number++;
+  }
+}

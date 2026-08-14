@@ -22,42 +22,39 @@ SymbolTable *new_symbol_table() {
   int element_count =
       sizeof(predefined_symbols) / sizeof(predefined_symbols[0]);
   for (int i = 0; i < element_count; i++) {
-    SymbolTable *item = (SymbolTable *)malloc(sizeof(SymbolTable));
-    if (item == NULL)
-      return NULL;
-
-    strncpy(item->key, predefined_symbols[i].key, sizeof(item->key) - 1);
-    item->key[sizeof(item->key) - 1] = '\0';
-
-    item->value = predefined_symbols[i].value;
-
-    HASH_ADD_STR(symbol_table, key, item);
+    add_entry(&symbol_table, predefined_symbols[i].key,
+              predefined_symbols[i].value);
   }
   return symbol_table;
 }
 
 /**
- * Frees all entries in the symbol table
+ * Frees all entries in the symbol table and clears the caller's handle
  */
-void destroy_symbol_table(SymbolTable *symbol_table) {
+void destroy_symbol_table(SymbolTable **symbol_table) {
   SymbolTable *current, *tmp;
-  HASH_ITER(hh, symbol_table, current, tmp) {
-    HASH_DEL(symbol_table, current);
+  HASH_ITER(hh, *symbol_table, current, tmp) {
+    HASH_DEL(*symbol_table, current);
     free(current);
   }
+  *symbol_table = NULL;
 }
 
-void add_entry(SymbolTable *symbol_table, char *symbol, int address) {
+/**
+ * Adds symbol -> address. Takes the table by address because uthash
+ * reassigns the head pointer when it grows.
+ */
+void add_entry(SymbolTable **symbol_table, char *symbol, int address) {
 
   SymbolTable *item = (SymbolTable *)malloc(sizeof(SymbolTable));
   if (item == NULL)
     return;
 
-  strncpy(item->key, symbol, sizeof(symbol) - 1);
+  strncpy(item->key, symbol, sizeof(item->key) - 1);
   item->key[sizeof(item->key) - 1] = '\0';
 
   item->value = address;
-  HASH_ADD_STR(symbol_table, key, item);
+  HASH_ADD_STR(*symbol_table, key, item);
 }
 
 int contains(SymbolTable *symbol_table, char *key) {
@@ -66,8 +63,13 @@ int contains(SymbolTable *symbol_table, char *key) {
   return result != NULL;
 }
 
+/**
+ * Returns the address bound to symbol, or -1 if it is not in the table
+ */
 int get_address(SymbolTable *symbol_table, char *symbol) {
-  SymbolTable *result;
+  SymbolTable *result = NULL;
   HASH_FIND_STR(symbol_table, symbol, result);
+  if (result == NULL)
+    return -1;
   return result->value;
 }
