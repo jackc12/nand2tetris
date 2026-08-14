@@ -73,3 +73,10 @@ int get_address(SymbolTable *symbol_table, char *symbol) {
     return -1;
   return result->value;
 }
+
+void print_symbol_table(SymbolTable **symbol_table) {
+  SymbolTable *current, *tmp;
+  HASH_ITER(hh, *symbol_table, current, tmp) {
+    printf("%s\t%d\n", current->key, current->value);
+  }
+}

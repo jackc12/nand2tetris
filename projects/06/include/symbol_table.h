@@ -13,5 +13,6 @@ void destroy_symbol_table(SymbolTable **symbol_table);
 int contains(SymbolTable *symbol_table, char *key);
 void add_entry(SymbolTable **symbol_table, char *symbol, int address);
 int get_address(SymbolTable *symbol_table, char *symbol);
+void print_symbol_table(SymbolTable **symbol_table);
 
 #endif
