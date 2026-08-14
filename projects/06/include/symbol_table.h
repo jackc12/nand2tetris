@@ -1,5 +1,5 @@
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef SYMBOL_TABLE_H
+#define SYMBOL_TABLE_H
 #include "uthash.h"
 
 typedef struct {
