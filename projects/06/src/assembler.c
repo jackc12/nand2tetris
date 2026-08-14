@@ -31,6 +31,10 @@ int main(int argc, char *argv[]) {
 
     while (has_more_lines(line_number, instruction_count)) {
       instruction = advance(lines, &line_number, instruction_count);
+      if (instruction == "@RET_ADDRESS_CALL0" ||
+          instruction == "(RET_ADDRESS_CALL0)") {
+        printf("instruction: %s", instruction);
+      }
       hack[instruction_number] = malloc(17);
       switch (instruction_type(instruction)) {
       case A_INSTRUCTION:
@@ -51,7 +55,8 @@ int main(int argc, char *argv[]) {
             int_to_bin(a_instruction, hack[instruction_number], 17);
           }
         }
-	    printf("asm: %s; hack: %s; instruction_number: %d\n", a_instruction, hack[instruction_number], instruction_number);
+        // printf("asm: %s; hack: %s; in: %d; ln: %d\n", a_instruction,
+        // hack[instruction_number], instruction_number, line_number);
         fprintf(file, "%s\n", hack[instruction_number]);
         instruction_number++;
         break;
