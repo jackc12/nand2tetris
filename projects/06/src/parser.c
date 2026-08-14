@@ -115,8 +115,10 @@ instruction_t instruction_type(char *instruction) {
       }
       i++;
     }
-  } else if (instruction[0] != '/' && instruction[1] != '/') {
+    // this is bad. really should match on positive case
     // brittle but valid assembly is an invariant
+  } else if (instruction[0] != '\0' &&
+             (instruction[0] != '/' && instruction[1] != '/')) {
     type = C_INSTRUCTION;
   } else {
     type = NOT_INSTRUCTION;
