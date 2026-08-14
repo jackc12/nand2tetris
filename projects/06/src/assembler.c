@@ -39,24 +39,24 @@ int main(int argc, char *argv[]) {
         address = get_address(symbol_table, "RET_ADDRESS_CALL0");
         printf("(RET_ADDRESS_CALL0): %d\n", address);
       }
-      hack[instruction_number] = malloc(17);
+      hack[instruction_number] = malloc(30);
       switch (instruction_type(instruction)) {
       case A_INSTRUCTION:
         // TODO
         a_instruction = symbol(instruction);
         if (a_instruction[0] >= '0' && a_instruction[0] <= '9') {
-          int_to_bin(a_instruction, hack[instruction_number], 17);
+          int_to_bin(a_instruction, hack[instruction_number], 30);
         } else {
           address = get_address(symbol_table, a_instruction);
 
           if (address == -1) {
             add_entry(&symbol_table, a_instruction, free_address);
             snprintf(a_instruction, 16, "%d", free_address);
-            int_to_bin(a_instruction, hack[instruction_number], 17);
+            int_to_bin(a_instruction, hack[instruction_number], 30);
             free_address++;
           } else {
             snprintf(a_instruction, 16, "%d", address);
-            int_to_bin(a_instruction, hack[instruction_number], 17);
+            int_to_bin(a_instruction, hack[instruction_number], 30);
           }
         }
         // printf("asm: %s; hack: %s; in: %d; ln: %d\n", a_instruction,
