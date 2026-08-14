@@ -42,8 +42,6 @@ int main(int argc, char *argv[]) {
         } else {
           address = get_address(symbol_table, a_instruction);
 
-          printf("a_instruction: %s\n", a_instruction);
-          printf("address: %d\n", address);
           if (address == -1) {
             add_entry(&symbol_table, a_instruction, free_address);
             snprintf(a_instruction, 16, "%d", free_address);
@@ -79,8 +77,8 @@ int main(int argc, char *argv[]) {
     free_line_array(lines, instruction_count);
     free_line_array(hack, instruction_number);
     fclose(file);
-    // printf("i: %d\n", get_address(symbol_table, "i"));
-    // printf("sum: %d\n", get_address(symbol_table, "sum"));
+    printf("i: %d\n", get_address(symbol_table, "i"));
+    printf("sum: %d\n", get_address(symbol_table, "sum"));
   }
   return 0;
 }
