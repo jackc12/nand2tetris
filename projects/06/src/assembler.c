@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
             int_to_bin(a_instruction, hack[instruction_number], 30);
           }
         }
-        fprintf(file, "%s\n", hack[instruction_number]);
+        fprintf(file, "%s%s", instruction_number ? "\n" : "", hack[instruction_number]);
         instruction_number++;
         break;
 
@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
         jump = parser_jump(instruction);
         jump = code_jump(jump);
         sprintf(hack[instruction_number], "111%s%s%s", comp, dest, jump);
-        fprintf(file, "%s\n", hack[instruction_number]);
+        fprintf(file, "%s%s", instruction_number ? "\n" : "", hack[instruction_number]);
         instruction_number++;
         break;
 
