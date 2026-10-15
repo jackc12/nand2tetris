@@ -1,7 +1,11 @@
+@256
+D=A
+@R0
+M=D
 @7
 D=A
-@SP
+@R0
 A=M
 M=D
-@SP
+@R0
 M=M+1
